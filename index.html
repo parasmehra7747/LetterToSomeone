@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Penned With Love — Digital Love Letters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&family=Sacramento&family=Cinzel:wght@400;600&family=Josefin+Sans:wght@300;400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+          --ink: #1a0a0a;
+          --parchment: #fdf6ec;
+          --rose: #c0434b;
+          --blush: #e8a0a5;
+          --gold: #b8860b;
+          --gold-light: #d4a843;
+          --midnight: #0d0610;
+          --velvet: #3b0764;
+          --cream: #fef9f2;
+          --border: rgba(184,134,11,0.25);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+          background: var(--midnight);
+          color: var(--parchment);
+          font-family: 'Cormorant Garamond', serif;
+          min-height: 100vh;
+          overflow-x: hidden;
+        }
+
+        /* ─── Stars background ─── */
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background-image:
+            radial-gradient(1px 1px at 10% 15%, rgba(255,255,220,0.6) 0%, transparent 100%),
+            radial-gradient(1px 1px at 30% 40%, rgba(255,255,220,0.4) 0%, transparent 100%),
+            radial-gradient(1px 1px at 55% 20%, rgba(255,255,220,0.7) 0%, transparent 100%),
+            radial-gradient(1px 1px at 80% 60%, rgba(255,255,220,0.5) 0%, transparent 100%),
+            radial-gradient(1px 1px at 70% 10%, rgba(255,255,220,0.6) 0%, transparent 100%),
+            radial-gradient(1px 1px at 20% 80%, rgba(255,255,220,0.4) 0%, transparent 100%),
+            radial-gradient(1px 1px at 90% 35%, rgba(255,255,220,0.5) 0%, transparent 100%),
+            radial-gradient(1px 1px at 45% 70%, rgba(255,255,220,0.3) 0%, transparent 100%),
+            radial-gradient(1px 1px at 65% 85%, rgba(255,255,220,0.6) 0%, transparent 100%),
+            radial-gradient(1px 1px at 15% 55%, rgba(255,255,220,0.4) 0%, transparent 100%),
+            radial-gradient(2px 2px at 40% 5%, rgba(255,240,180,0.8) 0%, transparent 100%),
+            radial-gradient(2px 2px at 85% 75%, rgba(255,240,180,0.7) 0%, transparent 100%),
+            radial-gradient(2px 2px at 5% 90%, rgba(255,240,180,0.6) 0%, transparent 100%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        body::after {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background: radial-gradient(ellipse at 20% 50%, rgba(59,7,100,0.4) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 20%, rgba(192,67,75,0.15) 0%, transparent 50%),
+                      radial-gradient(ellipse at 50% 100%, rgba(59,7,100,0.5) 0%, transparent 60%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        /* ─── Sections ─── */
+        .hero, .composer, .footer { position: relative; z-index: 1; }
+
+        /* ─── Hero ─── */
+        .hero {
+          text-align: center;
+          padding: 70px 20px 50px;
+        }
+
+        .hero-eyebrow {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 11px;
+          letter-spacing: 5px;
+          text-transform: uppercase;
+          color: var(--gold-light);
+          margin-bottom: 18px;
+          opacity: 0.9;
+        }
+
+        .hero h1 {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(40px, 8vw, 88px);
+          font-weight: 400;
+          line-height: 1.0;
+          color: var(--parchment);
+          letter-spacing: -1px;
+        }
+
+        .hero h1 em {
+          font-style: italic;
+          color: var(--blush);
+        }
+
+        .hero-sub {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 19px;
+          font-style: italic;
+          color: rgba(253,246,236,0.6);
+          margin-top: 18px;
+          max-width: 420px;
+          margin-inline: auto;
+          line-height: 1.6;
+        }
+
+        .gold-divider {
+          width: 80px;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--gold), transparent);
+          margin: 30px auto;
+        }
+
+        .step-chips {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-bottom: 10px;
+        }
+
+        .chip {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          padding: 6px 16px;
+          border: 1px solid var(--border);
+          border-radius: 100px;
+          color: rgba(253,246,236,0.5);
+        }
+
+        /* ─── Composer card ─── */
+        .composer {
+          max-width: 860px;
+          margin: 0 auto 60px;
+          padding: 0 16px;
+        }
+
+        .card {
+          background: rgba(253,246,236,0.04);
+          border: 1px solid var(--border);
+          border-radius: 4px;
+          backdrop-filter: blur(18px);
+          overflow: hidden;
+        }
+
+        .card-header {
+          background: linear-gradient(135deg, rgba(184,134,11,0.15), rgba(192,67,75,0.08));
+          border-bottom: 1px solid var(--border);
+          padding: 22px 30px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .card-header-dot {
+          width: 10px; height: 10px;
+          border-radius: 50%;
+          background: var(--rose);
+          box-shadow: 0 0 8px var(--rose);
+        }
+
+        .card-header h2 {
+          font-family: 'Playfair Display', serif;
+          font-size: 17px;
+          font-weight: 400;
+          color: var(--gold-light);
+          letter-spacing: 0.5px;
+        }
+
+        .card-body { padding: 30px; }
+
+        /* ─── Steps ─── */
+        .step { margin-bottom: 36px; }
+
+        .step-label {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: var(--gold);
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .step-label::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: var(--border);
+        }
+
+        /* ─── Template grid ─── */
+        .template-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          gap: 10px;
+        }
+
+        .template-btn {
+          background: rgba(253,246,236,0.03);
+          border: 1px solid var(--border);
+          border-radius: 4px;
+          padding: 14px 10px;
+          cursor: pointer;
+          text-align: center;
+          transition: all 0.25s;
+          color: var(--parchment);
+        }
+
+        .template-btn:hover, .template-btn.active {
+          background: rgba(192,67,75,0.15);
+          border-color: var(--rose);
+        }
+
+        .template-btn .t-icon { font-size: 22px; margin-bottom: 6px; }
+
+        .template-btn .t-name {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: rgba(253,246,236,0.6);
+        }
+
+        /* ─── Font grid ─── */
+        .font-grid {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+
+        .font-btn {
+          padding: 8px 18px;
+          border: 1px solid var(--border);
+          border-radius: 3px;
+          background: transparent;
+          cursor: pointer;
+          color: var(--parchment);
+          font-size: 15px;
+          transition: all 0.2s;
+        }
+
+        .font-btn:hover, .font-btn.active {
+          border-color: var(--gold-light);
+          background: rgba(184,134,11,0.12);
+          color: var(--gold-light);
+        }
+
+        .font-btn.f-playfair { font-family: 'Playfair Display', serif; }
+        .font-btn.f-cormorant { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .font-btn.f-dancing { font-family: 'Dancing Script', cursive; }
+        .font-btn.f-sacramento { font-family: 'Sacramento', cursive; font-size: 20px; }
+        .font-btn.f-cinzel { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; }
+        .font-btn.f-ebg { font-family: 'EB Garamond', serif; font-style: italic; }
+
+        /* ─── Inputs ─── */
+        .field { margin-bottom: 16px; }
+
+        .field label {
+          display: block;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: rgba(253,246,236,0.45);
+          margin-bottom: 7px;
+        }
+
+        input[type="text"], textarea {
+          width: 100%;
+          background: rgba(253,246,236,0.04);
+          border: 1px solid var(--border);
+          border-radius: 3px;
+          padding: 12px 16px;
+          color: var(--parchment);
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 17px;
+          outline: none;
+          transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+          border-color: rgba(184,134,11,0.6);
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 160px;
+          line-height: 1.7;
+        }
+
+        /* ─── Poetry box ─── */
+        .poetry-row {
+          display: flex;
+          gap: 10px;
+          align-items: flex-start;
+        }
+
+        .poetry-box {
+          flex: 1;
+          background: rgba(184,134,11,0.06);
+          border: 1px solid rgba(184,134,11,0.2);
+          border-radius: 3px;
+          padding: 16px;
+          font-family: 'Cormorant Garamond', serif;
+          font-style: italic;
+          font-size: 16px;
+          color: rgba(253,246,236,0.75);
+          line-height: 1.8;
+          min-height: 100px;
+        }
+
+        .poetry-box.empty {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgba(253,246,236,0.25);
+          font-style: normal;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 11px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        .btn-gen {
+          background: linear-gradient(135deg, var(--velvet), #5b0e91);
+          border: 1px solid rgba(184,134,11,0.3);
+          border-radius: 3px;
+          color: var(--gold-light);
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          padding: 12px 18px;
+          cursor: pointer;
+          transition: all 0.2s;
+          white-space: nowrap;
+        }
+
+        .btn-gen:hover { filter: brightness(1.15); }
+        .btn-gen:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* ─── Song search ─── */
+        .song-row {
+          display: flex;
+          gap: 10px;
+        }
+
+        .song-row input { flex: 1; }
+
+        .song-platform {
+          display: flex;
+          gap: 6px;
+          margin-bottom: 10px;
+        }
+
+        .platform-btn {
+          padding: 5px 14px;
+          border: 1px solid var(--border);
+          border-radius: 100px;
+          background: transparent;
+          color: rgba(253,246,236,0.5);
+          cursor: pointer;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          transition: all 0.2s;
+        }
+
+        .platform-btn.active.spotify { border-color: #1DB954; color: #1DB954; background: rgba(29,185,84,0.08); }
+        .platform-btn.active.instagram { border-color: #E1306C; color: #E1306C; background: rgba(225,48,108,0.08); }
+
+        .song-result {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px 14px;
+          background: rgba(253,246,236,0.04);
+          border: 1px solid var(--border);
+          border-radius: 3px;
+          margin-top: 10px;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .song-result:hover { border-color: var(--gold-light); background: rgba(184,134,11,0.06); }
+        .song-result.selected { border-color: #1DB954; background: rgba(29,185,84,0.07); }
+
+        .song-art {
+          width: 42px; height: 42px;
+          border-radius: 4px;
+          background: linear-gradient(135deg, #1a0a0a, #3b0764);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          flex-shrink: 0;
+        }
+
+        .song-info .song-name {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 12px;
+          letter-spacing: 1px;
+          color: var(--parchment);
+        }
+
+        .song-info .song-artist {
+          font-family: 'Cormorant Garamond', serif;
+          font-style: italic;
+          font-size: 13px;
+          color: rgba(253,246,236,0.45);
+          margin-top: 2px;
+        }
+
+        .song-check { margin-left: auto; color: #1DB954; font-size: 16px; display: none; }
+        .song-result.selected .song-check { display: block; }
+
+        /* ─── Color mood ─── */
+        .mood-grid {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .mood-btn {
+          padding: 8px 16px;
+          border-radius: 3px;
+          border: 1px solid transparent;
+          cursor: pointer;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          transition: all 0.2s;
+        }
+
+        .mood-btn.active { border-color: rgba(255,255,255,0.5); }
+        .mood-rose { background: rgba(192,67,75,0.25); color: #e8a0a5; }
+        .mood-midnight { background: rgba(13,6,16,0.8); color: #9b7cc5; border: 1px solid rgba(155,124,197,0.3); }
+        .mood-gold { background: rgba(184,134,11,0.2); color: #d4a843; }
+        .mood-sage { background: rgba(80,120,90,0.25); color: #a8c5a0; }
+        .mood-dusk { background: rgba(100,60,120,0.3); color: #c9a0dc; }
+
+        /* ─── Actions ─── */
+        .action-row {
+          display: flex;
+          gap: 12px;
+          justify-content: flex-end;
+          align-items: center;
+          padding-top: 20px;
+          border-top: 1px solid var(--border);
+        }
+
+        .btn-preview {
+          background: transparent;
+          border: 1px solid var(--border);
+          border-radius: 3px;
+          color: rgba(253,246,236,0.6);
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          padding: 12px 24px;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .btn-preview:hover { border-color: var(--gold); color: var(--gold); }
+
+        .btn-seal {
+          background: linear-gradient(135deg, var(--rose), #8b2228);
+          border: none;
+          border-radius: 3px;
+          color: #fff;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          padding: 13px 30px;
+          cursor: pointer;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .btn-seal:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(192,67,75,0.3); }
+
+        /* ─── LETTER PREVIEW MODAL ─── */
+        .modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(13,6,16,0.92);
+          backdrop-filter: blur(12px);
+          z-index: 100;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .letter-modal {
+          max-width: 640px;
+          width: 100%;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+        }
+
+        .letter-paper {
+          background: var(--parchment);
+          color: var(--ink);
+          border-radius: 2px;
+          padding: 60px 54px;
+          position: relative;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.7), inset 0 0 60px rgba(180,140,80,0.08);
+          min-height: 500px;
+        }
+
+        /* Paper texture lines */
+        .letter-paper::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: repeating-linear-gradient(transparent, transparent 27px, rgba(180,140,80,0.12) 28px);
+          border-radius: 2px;
+          pointer-events: none;
+        }
+
+        /* Wax seal decoration */
+        .letter-paper::after {
+          content: '❧';
+          position: absolute;
+          top: 20px;
+          right: 26px;
+          font-size: 22px;
+          color: rgba(192,67,75,0.35);
+        }
+
+        .letter-to {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: rgba(26,10,10,0.4);
+          margin-bottom: 28px;
+        }
+
+        .letter-body-text {
+          font-size: 18px;
+          line-height: 1.85;
+          color: var(--ink);
+          margin-bottom: 28px;
+          white-space: pre-wrap;
+        }
+
+        .letter-poetry-embed {
+          border-left: 2px solid var(--rose);
+          padding: 14px 20px;
+          margin: 20px 0;
+          font-style: italic;
+          font-size: 15px;
+          line-height: 1.9;
+          color: rgba(26,10,10,0.7);
+        }
+
+        .letter-song-embed {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 14px;
+          border: 1px solid rgba(29,185,84,0.3);
+          border-radius: 4px;
+          background: rgba(29,185,84,0.05);
+          margin: 16px 0;
+          font-size: 13px;
+          color: rgba(26,10,10,0.7);
+        }
+
+        .letter-song-embed span { font-size: 18px; }
+
+        .letter-sign {
+          text-align: right;
+          margin-top: 40px;
+          font-size: 20px;
+          font-style: italic;
+          color: rgba(26,10,10,0.55);
+        }
+
+        /* ─── Link share ─── */
+        .share-bar {
+          background: rgba(253,246,236,0.04);
+          border: 1px solid var(--border);
+          border-top: none;
+          padding: 20px 30px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .link-box {
+          flex: 1;
+          background: rgba(253,246,236,0.06);
+          border: 1px solid var(--border);
+          border-radius: 3px;
+          padding: 10px 14px;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 11px;
+          letter-spacing: 1px;
+          color: var(--gold-light);
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        .btn-copy {
+          background: var(--gold);
+          border: none;
+          border-radius: 3px;
+          padding: 10px 18px;
+          color: var(--midnight);
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.2s;
+          white-space: nowrap;
+        }
+
+        .btn-copy:hover { filter: brightness(1.1); }
+
+        .btn-close-modal {
+          position: absolute;
+          top: -42px;
+          right: 0;
+          background: transparent;
+          border: 1px solid var(--border);
+          color: rgba(253,246,236,0.5);
+          border-radius: 3px;
+          padding: 7px 16px;
+          cursor: pointer;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          transition: all 0.2s;
+        }
+
+        .btn-close-modal:hover { border-color: var(--rose); color: var(--rose); }
+
+        /* ─── Spinner ─── */
+        .spinner {
+          display: inline-block;
+          width: 12px; height: 12px;
+          border: 2px solid rgba(184,134,11,0.3);
+          border-top-color: var(--gold);
+          border-radius: 50%;
+          animation: spin 0.6s linear infinite;
+          vertical-align: middle;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ─── Toast ─── */
+        .toast {
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          background: rgba(29,185,84,0.15);
+          border: 1px solid rgba(29,185,84,0.4);
+          color: #6ee79a;
+          padding: 12px 22px;
+          border-radius: 3px;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 11px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          z-index: 200;
+          opacity: 0;
+          transform: translateY(10px);
+          transition: all 0.3s;
+          pointer-events: none;
+        }
+
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        /* ─── Footer ─── */
+        .footer {
+          text-align: center;
+          padding: 40px 20px;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: rgba(253,246,236,0.2);
+        }
+
+        /* ─── Poem styles ─── */
+        .mood-theme-rose .letter-paper { background: #fff5f5; }
+        .mood-theme-midnight .letter-paper { background: #f8f5ff; }
+        .mood-theme-gold .letter-paper { background: #fffbf0; }
+        .mood-theme-sage .letter-paper { background: #f5faf6; }
+        .mood-theme-dusk .letter-paper { background: #fdf5ff; }
+
+        @media (max-width: 600px) {
+          .card-body { padding: 20px; }
+          .letter-paper { padding: 36px 24px; }
+          .share-bar { flex-direction: column; }
+          .font-btn { padding: 7px 12px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+    <p class="hero-eyebrow">✦ Penned With Love ✦</p>
+    <h1>Write what the<br/><em>heart cannot say</em></h1>
+    <p class="hero-sub">Craft a digital love letter — layered with poetry, music & longing — delivered by a single link.</p>
+    <div class="gold-divider"></div>
+    <div class="step-chips">
+        <div class="chip">Choose a template</div>
+        <div class="chip">Write your heart</div>
+        <div class="chip">Add poetry & song</div>
+        <div class="chip">Send the link</div>
+    </div>
+</section>
+
+<!-- ─── COMPOSER ─── -->
+<section class="composer">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-header-dot"></div>
+            <h2>Letter Composer</h2>
+        </div>
+        <div class="card-body">
+
+            <!-- Step 1: Template -->
+            <div class="step">
+                <div class="step-label">01 — Choose a Format</div>
+                <div class="template-grid">
+                    <div class="template-btn active" data-template="classic" onclick="selectTemplate(this, 'classic')">
+                        <div class="t-icon">📜</div>
+                        <div class="t-name">Classic Letter</div>
+                    </div>
+                    <div class="template-btn" data-template="poem" onclick="selectTemplate(this, 'poem')">
+                        <div class="t-icon">🌸</div>
+                        <div class="t-name">Poetic Note</div>
+                    </div>
+                    <div class="template-btn" data-template="midnight" onclick="selectTemplate(this, 'midnight')">
+                        <div class="t-icon">🌙</div>
+                        <div class="t-name">Midnight Thought</div>
+                    </div>
+                    <div class="template-btn" data-template="anniversary" onclick="selectTemplate(this, 'anniversary')">
+                        <div class="t-icon">💍</div>
+                        <div class="t-name">Anniversary</div>
+                    </div>
+                    <div class="template-btn" data-template="apology" onclick="selectTemplate(this, 'apology')">
+                        <div class="t-icon">🤍</div>
+                        <div class="t-name">Apology</div>
+                    </div>
+                    <div class="template-btn" data-template="surprise" onclick="selectTemplate(this, 'surprise')">
+                        <div class="t-icon">✨</div>
+                        <div class="t-name">Surprise!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Font -->
+            <div class="step">
+                <div class="step-label">02 — Select a Font</div>
+                <div class="font-grid">
+                    <button class="font-btn f-playfair active" onclick="selectFont(this, 'Playfair Display')">Playfair</button>
+                    <button class="font-btn f-cormorant" onclick="selectFont(this, 'Cormorant Garamond')">Cormorant Italic</button>
+                    <button class="font-btn f-dancing" onclick="selectFont(this, 'Dancing Script')">Dancing Script</button>
+                    <button class="font-btn f-sacramento" onclick="selectFont(this, 'Sacramento')">Sacramento</button>
+                    <button class="font-btn f-cinzel" onclick="selectFont(this, 'Cinzel')">CINZEL</button>
+                    <button class="font-btn f-ebg" onclick="selectFont(this, 'EB Garamond')">EB Garamond</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Mood Color -->
+            <div class="step">
+                <div class="step-label">03 — Letter Mood</div>
+                <div class="mood-grid">
+                    <button class="mood-btn mood-rose active" data-mood="rose" onclick="selectMood(this)">Rosy Romance</button>
+                    <button class="mood-btn mood-midnight" data-mood="midnight" onclick="selectMood(this)">Midnight Blue</button>
+                    <button class="mood-btn mood-gold" data-mood="gold" onclick="selectMood(this)">Golden Hour</button>
+                    <button class="mood-btn mood-sage" data-mood="sage" onclick="selectMood(this)">Sage & Still</button>
+                    <button class="mood-btn mood-dusk" data-mood="dusk" onclick="selectMood(this)">Twilight Dusk</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Write -->
+            <div class="step">
+                <div class="step-label">04 — Write Your Letter</div>
+                <div class="field">
+                    <label>To (recipient's name)</label>
+                    <input type="text" id="recipientName" placeholder="My dearest..." />
+                </div>
+                <div class="field">
+                    <label>Your message</label>
+                    <textarea id="letterBody" placeholder="Pour your heart out here...&#10;&#10;Every word you write is a flower placed in their hand."></textarea>
+                </div>
+                <div class="field">
+                    <label>Sign off as</label>
+                    <input type="text" id="senderName" placeholder="Forever yours, ..." />
+                </div>
+            </div>
+
+            <!-- Step 5: Poetry -->
+            <div class="step">
+                <div class="step-label">05 — Embed a Poetry Verse</div>
+                <div class="poetry-row">
+                    <div class="poetry-box empty" id="poetryBox">Click to generate a verse for your letter</div>
+                    <button class="btn-gen" onclick="generatePoetry()" id="poetryBtn">✦ Generate</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Song -->
+            <div class="step">
+                <div class="step-label">06 — Attach a Song</div>
+                <div class="song-platform">
+                    <button class="platform-btn spotify active" data-p="spotify" onclick="selectPlatform(this)">♫ Spotify</button>
+                    <button class="platform-btn instagram" data-p="instagram" onclick="selectPlatform(this)">◈ Instagram</button>
+                </div>
+                <div class="song-row">
+                    <input type="text" id="songSearch" placeholder="Search for a song or artist…" oninput="debouncedSongSearch()" />
+                </div>
+                <div id="songResults"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-row">
+                <button class="btn-preview" onclick="openPreview()">Preview Letter</button>
+                <button class="btn-seal" onclick="sealLetter()">
+                    <span>💌</span> Seal & Generate Link
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Share bar (hidden until sealed) -->
+        <div class="share-bar" id="shareBar" style="display:none;">
+            <div class="link-box" id="generatedLink">https://pennedwithlove.co/l/...</div>
+            <button class="btn-copy" onclick="copyLink()">Copy Link</button>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    ✦ Penned With Love — every letter is a universe ✦
+</footer>
+
+<!-- ─── MODAL ─── -->
+<div class="modal-overlay" id="previewModal">
+    <div class="letter-modal" id="letterModal">
+        <button class="btn-close-modal" onclick="closePreview()">✕ Close</button>
+        <div class="letter-paper" id="letterPaper">
+            <!-- dynamically filled -->
+        </div>
+        <div class="share-bar" id="modalShareBar" style="display:none;">
+            <div class="link-box" id="modalLink">https://pennedwithlove.co/l/...</div>
+            <button class="btn-copy" onclick="copyLink('modal')">Copy Link</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">Link copied!</div>
+
+<script>
+    // ─── State ───
+    let state = {
+      template: 'classic',
+      font: 'Playfair Display',
+      mood: 'rose',
+      poetry: '',
+      selectedSong: null,
+      platform: 'spotify',
+      linkGenerated: false
+    };
+
+    // ─── Template selection ───
+    const TEMPLATE_INTROS = {
+      classic: '',
+      poem: 'Every breath I take carries the scent of your memory...\n\n',
+      midnight: 'It is late, and I find myself thinking of you yet again...\n\n',
+      anniversary: 'On this day, I want to mark time with the weight of what you mean to me...\n\n',
+      apology: 'I have been carrying these words long enough. Here they are, finally...\n\n',
+      surprise: 'I hope this finds you in the middle of an ordinary day — I am about to make it extraordinary...\n\n'
+    };
+
+    function selectTemplate(el, t) {
+      document.querySelectorAll('.template-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      state.template = t;
+      const body = document.getElementById('letterBody');
+      if (!body.value || Object.values(TEMPLATE_INTROS).includes(body.value)) {
+        body.value = TEMPLATE_INTROS[t];
+      }
+    }
+
+    // ─── Font ───
+    function selectFont(el, font) {
+      document.querySelectorAll('.font-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      state.font = font;
+    }
+
+    // ─── Mood ───
+    function selectMood(el) {
+      document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      state.mood = el.dataset.mood;
+    }
+
+    // ─── Poetry generation via Claude API ───
+    async function generatePoetry() {
+      const btn = document.getElementById('poetryBtn');
+      const box = document.getElementById('poetryBox');
+      const bodyText = document.getElementById('letterBody').value.trim();
+      const recipient = document.getElementById('recipientName').value.trim();
+      const template = state.template;
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>';
+      box.classList.add('empty');
+      box.textContent = 'Weaving your verse...';
+
+      const prompt = `Write a short, beautiful romantic poetry verse (4–6 lines) that fits a "${template}" style love letter${recipient ? ' addressed to ' + recipient : ''}. ${bodyText ? 'The letter says: "' + bodyText.slice(0,200) + '"' : ''} Make it lyrical, emotionally resonant, and original. Only return the poem, no titles or labels.`;
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+        const data = await res.json();
+        const poem = data.content?.[0]?.text?.trim() || 'In the quiet hours I reach for your name\nand find it on my lips like a prayer,\nlike sunlight through old window panes—\nyou, the warmth I did not know I was missing.';
+        state.poetry = poem;
+        box.classList.remove('empty');
+        box.textContent = poem;
+      } catch {
+        state.poetry = 'In the quiet hours I reach for your name\nand find it on my lips like a prayer,\nlike sunlight through old window panes—\nyou, the warmth I did not know I was missing.';
+        box.classList.remove('empty');
+        box.textContent = state.poetry;
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = '✦ Regenerate';
+    }
+
+    // ─── Song search ───
+    const MOCK_SONGS = {
+      spotify: [
+        { name: 'Perfect', artist: 'Ed Sheeran', emoji: '🎸' },
+        { name: 'All of Me', artist: 'John Legend', emoji: '🎹' },
+        { name: 'Lover', artist: 'Taylor Swift', emoji: '🌹' },
+        { name: 'Can\'t Help Falling in Love', artist: 'Elvis Presley', emoji: '🎶' },
+        { name: 'Make You Feel My Love', artist: 'Adele', emoji: '🕯️' },
+        { name: 'Die With A Smile', artist: 'Lady Gaga & Bruno Mars', emoji: '💫' },
+        { name: 'Thinking Out Loud', artist: 'Ed Sheeran', emoji: '✨' },
+      ],
+      instagram: [
+        { name: 'Golden Hour', artist: 'JVKE', emoji: '🌅' },
+        { name: 'Heart of Gold', artist: 'Neil Young', emoji: '💛' },
+        { name: 'Enchanted', artist: 'Taylor Swift', emoji: '🌙' },
+        { name: 'I Will Always Love You', artist: 'Whitney Houston', emoji: '🌺' },
+      ]
+    };
+
+    let songSearchTimeout;
+    function debouncedSongSearch() {
+      clearTimeout(songSearchTimeout);
+      songSearchTimeout = setTimeout(renderSongResults, 400);
+    }
+
+    function selectPlatform(el) {
+      document.querySelectorAll('.platform-btn').forEach(b => { b.classList.remove('active', 'spotify', 'instagram'); });
+      el.classList.add('active', el.dataset.p);
+      state.platform = el.dataset.p;
+      renderSongResults();
+    }
+
+    function renderSongResults() {
+      const q = document.getElementById('songSearch').value.toLowerCase().trim();
+      const container = document.getElementById('songResults');
+      if (!q) { container.innerHTML = ''; return; }
+
+      const songs = MOCK_SONGS[state.platform].filter(s =>
+        s.name.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q)
+      );
+
+      if (!songs.length) {
+        container.innerHTML = `<div style="padding:12px;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(253,246,236,0.3);text-transform:uppercase;">No songs found — try another search</div>`;
+        return;
+      }
+
+      container.innerHTML = songs.map((s, i) => `
+        <div class="song-result ${state.selectedSong?.name === s.name ? 'selected' : ''}" onclick="selectSong(${i})">
+          <div class="song-art">${s.emoji}</div>
+          <div class="song-info">
+            <div class="song-name">${s.name}</div>
+            <div class="song-artist">${s.artist}</div>
+          </div>
+          <div class="song-check">✓</div>
+        </div>
+      `).join('');
+
+      // attach click handlers
+      container.querySelectorAll('.song-result').forEach((el, i) => {
+        el.onclick = () => {
+          state.selectedSong = songs[i];
+          renderSongResults();
+        };
+      });
+    }
+
+    function selectSong(i) {} // handled inline above
+
+    // ─── Preview ───
+    function buildLetterHTML() {
+      const to = document.getElementById('recipientName').value.trim() || 'My Love';
+      const body = document.getElementById('letterBody').value.trim() || '...';
+      const sign = document.getElementById('senderName').value.trim() || 'Yours';
+
+      const fontStack = `'${state.font}', serif`;
+
+      let poetryHTML = '';
+      if (state.poetry) {
+        poetryHTML = `<div class="letter-poetry-embed" style="font-family:${fontStack}">${state.poetry.replace(/\n/g,'<br/>')}</div>`;
+      }
+
+      let songHTML = '';
+      if (state.selectedSong) {
+        songHTML = `<div class="letter-song-embed"><span>${state.selectedSong.emoji}</span><div><strong>${state.selectedSong.name}</strong> · ${state.selectedSong.artist}<br/><small style="opacity:0.5;font-size:11px;letter-spacing:1px">${state.platform.toUpperCase()} · A song I want you to hear</small></div></div>`;
+      }
+
+      return `
+        <div class="letter-to">For ${to},</div>
+        <div class="letter-body-text" style="font-family:${fontStack}">${body.replace(/\n/g,'<br/>')}</div>
+        ${poetryHTML}
+        ${songHTML}
+        <div class="letter-sign" style="font-family:${fontStack}">— ${sign}</div>
+      `;
+    }
+
+    function openPreview() {
+      document.getElementById('letterPaper').innerHTML = buildLetterHTML();
+      document.getElementById('letterPaper').className = `letter-paper mood-theme-${state.mood}`;
+      document.getElementById('modalShareBar').style.display = 'none';
+      document.getElementById('previewModal').classList.add('open');
+    }
+
+    function closePreview() {
+      document.getElementById('previewModal').classList.remove('open');
+    }
+
+    // ─── Seal ───
+    function sealLetter() {
+      const hash = Math.random().toString(36).substr(2, 8);
+      const link = `https://pennedwithlove.co/l/${hash}`;
+
+      // show in composer
+      document.getElementById('shareBar').style.display = 'flex';
+      document.getElementById('generatedLink').textContent = link;
+
+      // also open preview with share
+      openPreview();
+      document.getElementById('modalShareBar').style.display = 'flex';
+      document.getElementById('modalLink').textContent = link;
+      state.linkGenerated = true;
+      state.currentLink = link;
+    }
+
+    // ─── Copy ───
+    function copyLink(source) {
+      const link = state.currentLink || document.getElementById('generatedLink').textContent;
+      navigator.clipboard.writeText(link).catch(() => {});
+      showToast('Link copied to clipboard!');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // ─── Modal close on overlay click ───
+    document.getElementById('previewModal').addEventListener('click', function(e) {
+      if (e.target === this) closePreview();
+    });
+</script>
+</body>
+</html>
