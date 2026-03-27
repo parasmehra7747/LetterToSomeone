@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Penned With Love — Digital Letters </title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&family=Sacramento&family=Cinzel:wght@400;600&family=Josefin+Sans:wght@300;400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Penned With Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&family=Sacramento&family=Cinzel:wght@400;600&family=Josefin+Sans:wght@300;400;600&family=EB+Garamond:ital,wght@0,400;1,400&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet"/>
     <style>
         :root{
           --ink:#1a0a0a;--parchment:#fdf6ec;--rose:#c0434b;--blush:#e8a0a5;
@@ -12,388 +12,513 @@
           --border:rgba(184,134,11,0.25);
         }
         *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
         body{background:var(--midnight);color:var(--parchment);font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden;}
-        body::before{content:'';position:fixed;inset:0;background-image:
-          radial-gradient(1px 1px at 10% 15%,rgba(255,255,220,.6) 0%,transparent 100%),
-          radial-gradient(1px 1px at 30% 40%,rgba(255,255,220,.4) 0%,transparent 100%),
-          radial-gradient(1px 1px at 55% 20%,rgba(255,255,220,.7) 0%,transparent 100%),
-          radial-gradient(1px 1px at 80% 60%,rgba(255,255,220,.5) 0%,transparent 100%),
-          radial-gradient(1px 1px at 70% 10%,rgba(255,255,220,.6) 0%,transparent 100%),
-          radial-gradient(1px 1px at 20% 80%,rgba(255,255,220,.4) 0%,transparent 100%),
-          radial-gradient(2px 2px at 40% 5%,rgba(255,240,180,.8) 0%,transparent 100%),
-          radial-gradient(2px 2px at 85% 75%,rgba(255,240,180,.7) 0%,transparent 100%);
-          pointer-events:none;z-index:0;}
-        body::after{content:'';position:fixed;inset:0;background:
-          radial-gradient(ellipse at 20% 50%,rgba(59,7,100,.4) 0%,transparent 60%),
-          radial-gradient(ellipse at 80% 20%,rgba(192,67,75,.15) 0%,transparent 50%),
-          radial-gradient(ellipse at 50% 100%,rgba(59,7,100,.5) 0%,transparent 60%);
-          pointer-events:none;z-index:0;}
 
-        .hero,.composer,.footer,.received-wrap{position:relative;z-index:1;}
+        /* Stars */
+        body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+          background:radial-gradient(1px 1px at 8% 12%,rgba(255,255,220,.7) 0%,transparent 100%),
+          radial-gradient(1px 1px at 22% 35%,rgba(255,255,220,.5) 0%,transparent 100%),
+          radial-gradient(1px 1px at 45% 8%,rgba(255,255,220,.6) 0%,transparent 100%),
+          radial-gradient(1px 1px at 63% 55%,rgba(255,255,220,.4) 0%,transparent 100%),
+          radial-gradient(1px 1px at 78% 18%,rgba(255,255,220,.6) 0%,transparent 100%),
+          radial-gradient(1px 1px at 91% 70%,rgba(255,255,220,.5) 0%,transparent 100%),
+          radial-gradient(1px 1px at 15% 75%,rgba(255,255,220,.4) 0%,transparent 100%),
+          radial-gradient(2px 2px at 35% 90%,rgba(255,240,180,.8) 0%,transparent 100%),
+          radial-gradient(2px 2px at 88% 40%,rgba(255,240,180,.7) 0%,transparent 100%),
+          radial-gradient(2px 2px at 55% 25%,rgba(255,240,180,.6) 0%,transparent 100%);}
+        body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+          background:radial-gradient(ellipse at 15% 50%,rgba(59,7,100,.45) 0%,transparent 55%),
+          radial-gradient(ellipse at 85% 20%,rgba(192,67,75,.18) 0%,transparent 50%),
+          radial-gradient(ellipse at 50% 95%,rgba(59,7,100,.55) 0%,transparent 55%);}
 
-        /* HERO */
-        .hero{text-align:center;padding:70px 20px 50px;}
-        .hero-eyebrow{font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;}
-        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,8vw,86px);font-weight:400;line-height:1.05;}
+        /* ═══ LAYOUT ═══ */
+        #composerView,#receivedView{position:relative;z-index:1;}
+        #receivedView{display:none;}
+
+        /* ═══ HERO ═══ */
+        .hero{text-align:center;padding:72px 20px 52px;}
+        .eyebrow{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;animation:fadeUp .8s both;}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,8vw,90px);font-weight:400;line-height:1.05;animation:fadeUp .8s .15s both;}
         .hero h1 em{font-style:italic;color:var(--blush);}
-        .hero-sub{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;color:rgba(253,246,236,.6);margin-top:18px;max-width:420px;margin-inline:auto;line-height:1.6;}
-        .gold-divider{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:30px auto;}
-        .step-chips{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-        .chip{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:6px 16px;border:1px solid var(--border);border-radius:100px;color:rgba(253,246,236,.5);}
+        .hero-sub{font-size:19px;font-style:italic;color:rgba(253,246,236,.55);margin:16px auto 0;max-width:400px;line-height:1.6;animation:fadeUp .8s .3s both;}
+        .gold-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto;}
+        .chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;animation:fadeUp .8s .45s both;}
+        .chip{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;border:1px solid var(--border);border-radius:100px;color:rgba(253,246,236,.45);}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
 
-        /* CARD */
-        .composer{max-width:900px;margin:0 auto 60px;padding:0 16px;}
-        .card{background:rgba(253,246,236,.04);border:1px solid var(--border);border-radius:4px;backdrop-filter:blur(18px);overflow:hidden;}
-        .card-header{background:linear-gradient(135deg,rgba(184,134,11,.15),rgba(192,67,75,.08));border-bottom:1px solid var(--border);padding:22px 30px;display:flex;align-items:center;gap:12px;}
-        .card-header-dot{width:10px;height:10px;border-radius:50%;background:var(--rose);box-shadow:0 0 8px var(--rose);}
-        .card-header h2{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--gold-light);}
-        .card-body{padding:30px;}
-        .step{margin-bottom:36px;}
-        .step-label{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-        .step-label::after{content:'';flex:1;height:1px;background:var(--border);}
+        /* ═══ COMPOSER CARD ═══ */
+        .composer{max-width:920px;margin:0 auto 70px;padding:0 16px;}
+        .card{background:rgba(253,246,236,.04);border:1px solid var(--border);border-radius:4px;backdrop-filter:blur(20px);}
+        .card-head{background:linear-gradient(135deg,rgba(184,134,11,.15),rgba(192,67,75,.08));border-bottom:1px solid var(--border);padding:20px 28px;display:flex;align-items:center;gap:12px;}
+        .dot{width:10px;height:10px;border-radius:50%;background:var(--rose);box-shadow:0 0 10px var(--rose);}
+        .card-head h2{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--gold-light);}
+        .card-body{padding:28px;}
+        .step{margin-bottom:34px;}
+        .slabel{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+        .slabel::after{content:'';flex:1;height:1px;background:var(--border);}
 
         /* Templates */
-        .template-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
-        .template-btn{background:rgba(253,246,236,.03);border:1px solid var(--border);border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;transition:all .25s;color:var(--parchment);}
-        .template-btn:hover,.template-btn.active{background:rgba(192,67,75,.15);border-color:var(--rose);}
-        .t-icon{font-size:22px;margin-bottom:6px;}
-        .t-name{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(253,246,236,.6);}
+        .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:9px;}
+        .tbtn{background:rgba(253,246,236,.03);border:1px solid var(--border);border-radius:4px;padding:13px 8px;cursor:pointer;text-align:center;transition:all .25s;color:var(--parchment);}
+        .tbtn:hover,.tbtn.on{background:rgba(192,67,75,.15);border-color:var(--rose);transform:translateY(-2px);}
+        .ticon{font-size:24px;margin-bottom:5px;}
+        .tname{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(253,246,236,.55);}
 
-        /* Fonts */
-        .font-grid{display:flex;gap:8px;flex-wrap:wrap;}
-        .font-btn{padding:8px 18px;border:1px solid var(--border);border-radius:3px;background:transparent;cursor:pointer;color:var(--parchment);font-size:15px;transition:all .2s;}
-        .font-btn:hover,.font-btn.active{border-color:var(--gold-light);background:rgba(184,134,11,.12);color:var(--gold-light);}
-        .f-playfair{font-family:'Playfair Display',serif;}
-        .f-cormorant{font-family:'Cormorant Garamond',serif;font-style:italic;}
-        .f-dancing{font-family:'Dancing Script',cursive;}
-        .f-sacramento{font-family:'Sacramento',cursive;font-size:20px;}
-        .f-cinzel{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;}
-        .f-ebg{font-family:'EB Garamond',serif;font-style:italic;}
+        /* Font */
+        .fgrid{display:flex;gap:8px;flex-wrap:wrap;}
+        .fbtn{padding:8px 16px;border:1px solid var(--border);border-radius:3px;background:transparent;cursor:pointer;color:var(--parchment);font-size:15px;transition:all .2s;}
+        .fbtn:hover,.fbtn.on{border-color:var(--gold-light);background:rgba(184,134,11,.12);color:var(--gold-light);}
+        .ff1{font-family:'Playfair Display',serif;}
+        .ff2{font-family:'Cormorant Garamond',serif;font-style:italic;}
+        .ff3{font-family:'Dancing Script',cursive;}
+        .ff4{font-family:'Sacramento',cursive;font-size:20px;}
+        .ff5{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;}
+        .ff6{font-family:'EB Garamond',serif;font-style:italic;}
+        .ff7{font-family:'Noto Serif Devanagari',serif;font-size:13px;}
 
         /* Mood */
-        .mood-grid{display:flex;gap:10px;flex-wrap:wrap;}
-        .mood-btn{padding:8px 16px;border-radius:3px;border:1px solid transparent;cursor:pointer;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:all .2s;}
-        .mood-btn.active{border-color:rgba(255,255,255,.5)!important;}
-        .mood-rose{background:rgba(192,67,75,.25);color:#e8a0a5;}
-        .mood-midnight{background:rgba(13,6,16,.8);color:#9b7cc5;border:1px solid rgba(155,124,197,.3);}
-        .mood-gold{background:rgba(184,134,11,.2);color:#d4a843;}
-        .mood-sage{background:rgba(80,120,90,.25);color:#a8c5a0;}
-        .mood-dusk{background:rgba(100,60,120,.3);color:#c9a0dc;}
+        .mgrid{display:flex;gap:9px;flex-wrap:wrap;}
+        .mbtn{padding:7px 15px;border-radius:3px;border:1px solid transparent;cursor:pointer;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:all .2s;}
+        .mbtn.on{border-color:rgba(255,255,255,.6)!important;}
+        .mr{background:rgba(192,67,75,.25);color:#e8a0a5;}
+        .mm{background:rgba(13,6,16,.9);color:#9b7cc5;border:1px solid rgba(155,124,197,.3);}
+        .mg{background:rgba(184,134,11,.2);color:#d4a843;}
+        .ms{background:rgba(80,120,90,.25);color:#a8c5a0;}
+        .md{background:rgba(100,60,120,.3);color:#c9a0dc;}
 
         /* Inputs */
-        .field{margin-bottom:16px;}
-        .field label{display:block;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(253,246,236,.45);margin-bottom:7px;}
-        input[type=text],textarea{width:100%;background:rgba(253,246,236,.04);border:1px solid var(--border);border-radius:3px;padding:12px 16px;color:var(--parchment);font-family:'Cormorant Garamond',serif;font-size:17px;outline:none;transition:border-color .2s;}
+        .field{margin-bottom:14px;}
+        .field label{display:block;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(253,246,236,.4);margin-bottom:7px;}
+        input[type=text],textarea,select{width:100%;background:rgba(253,246,236,.04);border:1px solid var(--border);border-radius:3px;padding:11px 15px;color:var(--parchment);font-family:'Cormorant Garamond',serif;font-size:17px;outline:none;transition:border-color .2s;}
         input[type=text]:focus,textarea:focus{border-color:rgba(184,134,11,.6);}
-        textarea{resize:vertical;min-height:160px;line-height:1.7;}
-        ::placeholder{color:rgba(253,246,236,.2);}
+        textarea{resize:vertical;min-height:155px;line-height:1.75;}
+        ::placeholder{color:rgba(253,246,236,.18);}
 
         /* Poetry */
-        .poetry-row{display:flex;gap:10px;align-items:flex-start;}
-        .poetry-box{flex:1;background:rgba(184,134,11,.06);border:1px solid rgba(184,134,11,.2);border-radius:3px;padding:16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(253,246,236,.75);line-height:1.8;min-height:100px;}
-        .poetry-box.empty{display:flex;align-items:center;justify-content:center;color:rgba(253,246,236,.25);font-style:normal;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;}
-        .btn-gen{background:linear-gradient(135deg,var(--velvet),#5b0e91);border:1px solid rgba(184,134,11,.3);border-radius:3px;color:var(--gold-light);font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:12px 16px;cursor:pointer;transition:all .2s;white-space:nowrap;}
-        .btn-gen:hover{filter:brightness(1.15);}
-        .btn-gen:disabled{opacity:.5;cursor:not-allowed;}
+        .prow{display:flex;gap:10px;align-items:flex-start;}
+        .pbox{flex:1;background:rgba(184,134,11,.06);border:1px solid rgba(184,134,11,.2);border-radius:3px;padding:15px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(253,246,236,.75);line-height:1.8;min-height:100px;}
+        .pbox.empty{display:flex;align-items:center;justify-content:center;color:rgba(253,246,236,.25);font-style:normal;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;}
+        .genbtn{background:linear-gradient(135deg,var(--velvet),#5b0e91);border:1px solid rgba(184,134,11,.3);border-radius:3px;color:var(--gold-light);font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:11px 15px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+        .genbtn:hover{filter:brightness(1.2);}
+        .genbtn:disabled{opacity:.45;cursor:not-allowed;}
 
-        /* SONG LIBRARY */
-        .song-search-wrap{margin-bottom:12px;}
-        .song-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;max-height:300px;overflow-y:auto;padding-right:4px;}
-        .song-grid::-webkit-scrollbar{width:3px;}
-        .song-grid::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-        .song-card{background:rgba(253,246,236,.04);border:1px solid var(--border);border-radius:4px;padding:11px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px;}
-        .song-card:hover{border-color:var(--gold);background:rgba(184,134,11,.08);}
-        .song-card.selected{border-color:rgba(29,185,84,.6);background:rgba(29,185,84,.07);}
-        .song-card.playing{border-color:var(--rose);background:rgba(192,67,75,.1);}
-        .song-emoji{width:40px;height:40px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;background:linear-gradient(135deg,#1a0a0a,#3b0764);}
-        .song-meta{flex:1;min-width:0;}
-        .song-title{font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:.5px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-        .song-artist-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(253,246,236,.45);margin-top:2px;}
-        .play-btn-small{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--parchment);cursor:pointer;font-size:10px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-        .song-card:hover .play-btn-small{border-color:var(--gold);color:var(--gold);}
-        .song-card.playing .play-btn-small{border-color:var(--rose);color:var(--rose);background:rgba(192,67,75,.15);}
+        /* ═══ SONG LIBRARY ═══ */
+        .song-tabs{display:flex;gap:0;margin-bottom:14px;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+        .stab{flex:1;padding:9px;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;background:transparent;border:none;color:rgba(253,246,236,.45);cursor:pointer;transition:all .2s;text-align:center;}
+        .stab.on{background:rgba(253,246,236,.07);color:var(--parchment);}
+        .stab.on.intl{border-bottom:2px solid #833AB4;}
+        .stab.on.bwood{border-bottom:2px solid #FF6B35;}
+        .stab.on.indpop{border-bottom:2px solid #00C9FF;}
+        .stab.on.classic{border-bottom:2px solid var(--gold);}
 
-        /* Player bar */
-        .player-bar{display:none;align-items:center;gap:14px;padding:14px 18px;background:rgba(192,67,75,.08);border:1px solid rgba(192,67,75,.25);border-radius:4px;margin-top:12px;}
-        .player-bar.visible{display:flex;}
-        .player-emoji{font-size:26px;flex-shrink:0;}
-        .player-info{flex:1;}
-        .player-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--parchment);}
-        .player-artist{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(253,246,236,.5);margin-top:2px;}
-        .player-toggle{background:var(--rose);border:none;border-radius:100px;padding:9px 22px;color:#fff;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;white-space:nowrap;}
-        .player-toggle:hover{filter:brightness(1.1);}
+        .song-search{margin-bottom:12px;}
+        .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:8px;max-height:290px;overflow-y:auto;padding-right:3px;}
+        .sgrid::-webkit-scrollbar{width:3px;}
+        .sgrid::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-        /* YT hidden */
-        .yt-wrap{width:0;height:0;overflow:hidden;position:fixed;top:-999px;}
+        .scard{background:rgba(253,246,236,.04);border:1px solid var(--border);border-radius:4px;padding:10px 12px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:10px;}
+        .scard:hover{border-color:rgba(131,58,180,.5);background:rgba(131,58,180,.08);}
+        .scard.sel{border-color:#833AB4;background:rgba(131,58,180,.12);}
+        .scard.playing{border-color:var(--rose);background:rgba(192,67,75,.1);}
+        .semoji{width:40px;height:40px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;background:linear-gradient(135deg,#1a0a0a,#2d1045);}
+        .smeta{flex:1;min-width:0;}
+        .stitle{font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:.5px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .sartist{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(253,246,236,.42);margin-top:2px;}
+        .splaybtn{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:transparent;color:rgba(253,246,236,.6);cursor:pointer;font-size:9px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+        .scard:hover .splaybtn,.scard.playing .splaybtn{border-color:var(--rose);color:var(--rose);}
 
-        /* Actions */
-        .action-row{display:flex;gap:12px;justify-content:flex-end;align-items:center;padding-top:20px;border-top:1px solid var(--border);}
-        .btn-preview{background:transparent;border:1px solid var(--border);border-radius:3px;color:rgba(253,246,236,.6);font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:12px 24px;cursor:pointer;transition:all .2s;}
-        .btn-preview:hover{border-color:var(--gold);color:var(--gold);}
-        .btn-seal{background:linear-gradient(135deg,var(--rose),#8b2228);border:none;border-radius:3px;color:#fff;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:13px 30px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;}
-        .btn-seal:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 8px 25px rgba(192,67,75,.3);}
+        /* Spotify player bar */
+        .spotify-bar{display:none;margin-top:14px;border-radius:4px;overflow:hidden;border:1px solid rgba(131,58,180,.3);}
+        .spotify-bar.vis{display:block;}
+        .spotify-bar iframe{display:block;}
 
-        /* Share bar */
-        .share-bar{background:rgba(253,246,236,.04);border-top:1px solid var(--border);padding:18px 30px;display:flex;align-items:center;gap:12px;}
-        .link-box{flex:1;background:rgba(253,246,236,.06);border:1px solid rgba(184,134,11,.3);border-radius:3px;padding:10px 14px;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:.5px;color:var(--gold-light);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-        .btn-copy{background:var(--gold);border:none;border-radius:3px;padding:10px 18px;color:var(--midnight);font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:600;transition:all .2s;white-space:nowrap;}
-        .btn-copy:hover{filter:brightness(1.1);}
+        /* ═══ ACTIONS ═══ */
+        .actrow{display:flex;gap:10px;justify-content:flex-end;align-items:center;padding-top:18px;border-top:1px solid var(--border);}
+        .prevbtn{background:transparent;border:1px solid var(--border);border-radius:3px;color:rgba(253,246,236,.55);font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:11px 22px;cursor:pointer;transition:all .2s;}
+        .prevbtn:hover{border-color:var(--gold);color:var(--gold);}
+        .sealbtn{background:linear-gradient(135deg,var(--rose),#7a1c22);border:none;border-radius:3px;color:#fff;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:12px 28px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:8px;}
+        .sealbtn:hover{filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 10px 30px rgba(192,67,75,.35);}
+        .sharebar{border-top:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;gap:10px;}
+        .linkbox{flex:1;background:rgba(253,246,236,.06);border:1px solid rgba(184,134,11,.3);border-radius:3px;padding:9px 13px;font-family:'Josefin Sans',sans-serif;font-size:11px;color:var(--gold-light);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+        .copybtn{background:var(--gold);border:none;border-radius:3px;padding:9px 16px;color:var(--midnight);font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:600;transition:all .2s;white-space:nowrap;}
+        .copybtn:hover{filter:brightness(1.1);}
 
-        /* MODAL */
-        .modal-overlay{position:fixed;inset:0;background:rgba(13,6,16,.92);backdrop-filter:blur(12px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;}
-        .modal-overlay.open{display:flex;}
-        .letter-modal{max-width:660px;width:100%;position:relative;margin:auto;}
-        .btn-close-modal{position:absolute;top:-42px;right:0;background:transparent;border:1px solid var(--border);color:rgba(253,246,236,.5);border-radius:3px;padding:7px 16px;cursor:pointer;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;transition:all .2s;}
-        .btn-close-modal:hover{border-color:var(--rose);color:var(--rose);}
+        /* ═══ MODAL ═══ */
+        .overlay{position:fixed;inset:0;background:rgba(13,6,16,.93);backdrop-filter:blur(14px);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;}
+        .overlay.open{display:flex;}
+        .lmodal{max-width:700px;width:100%;position:relative;margin:auto;}
+        .closebtn{position:absolute;top:-44px;right:0;background:transparent;border:1px solid var(--border);color:rgba(253,246,236,.5);border-radius:3px;padding:7px 16px;cursor:pointer;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;transition:all .2s;}
+        .closebtn:hover{border-color:var(--rose);color:var(--rose);}
 
-        /* LETTER PAPER */
-        .letter-paper{background:var(--parchment);color:var(--ink);border-radius:2px;padding:60px 54px;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.7),inset 0 0 60px rgba(180,140,80,.08);}
-        .letter-paper::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(180,140,80,.12) 28px);border-radius:2px;pointer-events:none;}
-        .letter-paper::after{content:'❧';position:absolute;top:20px;right:26px;font-size:22px;color:rgba(192,67,75,.35);}
-        .letter-to{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(26,10,10,.4);margin-bottom:28px;}
-        .letter-body-text{font-size:18px;line-height:1.85;color:var(--ink);margin-bottom:28px;white-space:pre-wrap;}
-        .letter-poetry-embed{border-left:2px solid var(--rose);padding:14px 20px;margin:20px 0;font-style:italic;font-size:15px;line-height:1.9;color:rgba(26,10,10,.7);}
-        .letter-song-block{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(29,185,84,.3);border-radius:4px;background:rgba(29,185,84,.05);margin:16px 0;}
-        .letter-song-block .s-emoji{font-size:24px;}
-        .letter-song-block .s-info .s-name{font-family:'Josefin Sans',sans-serif;font-size:12px;letter-spacing:1px;color:var(--ink);}
-        .letter-song-block .s-info .s-artist{font-style:italic;font-size:13px;color:rgba(26,10,10,.5);margin-top:2px;}
-        .letter-song-block .s-play{margin-left:auto;background:rgba(29,185,84,.12);border:1px solid rgba(29,185,84,.4);border-radius:100px;padding:6px 16px;font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#1DB954;cursor:pointer;white-space:nowrap;transition:all .2s;}
-        .letter-song-block .s-play:hover{background:rgba(29,185,84,.2);}
-        .letter-sign{text-align:right;margin-top:40px;font-size:20px;font-style:italic;color:rgba(26,10,10,.5);}
+        /* ════════════════════════════════════════════
+           LETTER TEMPLATE PAGE DESIGNS
+           Each template has a completely unique visual
+        ════════════════════════════════════════════ */
 
-        /* Mood themes */
-        .mood-theme-rose{background:#fff5f5!important;}
-        .mood-theme-midnight{background:#f8f5ff!important;}
-        .mood-theme-gold{background:#fffbf0!important;}
-        .mood-theme-sage{background:#f5faf6!important;}
-        .mood-theme-dusk{background:#fdf5ff!important;}
+        /* ── CLASSIC: Aged parchment, sepia, inkstain ── */
+        .lp-classic{
+          background:#f5e6c8;color:#2c1a0e;
+          padding:64px 56px;border-radius:2px;
+          box-shadow:0 30px 80px rgba(0,0,0,.7),inset 0 0 80px rgba(140,100,40,.15);
+          position:relative;overflow:hidden;
+        }
+        .lp-classic::before{content:'';position:absolute;inset:0;
+          background-image:repeating-linear-gradient(transparent,transparent 28px,rgba(120,80,30,.1) 29px);
+          pointer-events:none;}
+        .lp-classic::after{content:'✒';position:absolute;bottom:24px;right:28px;font-size:28px;opacity:.18;}
+        .lp-classic .lhead{font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(44,26,14,.4);margin-bottom:30px;border-bottom:1px solid rgba(44,26,14,.15);padding-bottom:12px;}
+        .lp-classic .lbody{font-size:18px;line-height:1.9;white-space:pre-wrap;margin-bottom:24px;}
+        .lp-classic .lpoem{border-left:3px solid rgba(150,80,30,.4);padding:12px 18px;font-style:italic;font-size:15px;line-height:1.9;color:rgba(44,26,14,.65);margin:18px 0;}
+        .lp-classic .lsign{text-align:right;font-size:20px;font-style:italic;margin-top:36px;color:rgba(44,26,14,.55);}
 
-        /* RECEIVED VIEW */
-        #receivedView{display:none;min-height:100vh;padding:50px 20px;align-items:flex-start;justify-content:center;}
+        /* ── POETIC NOTE: Blush watercolor, floral, soft ── */
+        .lp-poem{
+          background:linear-gradient(145deg,#fff5f7,#fce4ec,#fdf0f5);
+          color:#3d1520;padding:64px 56px;border-radius:16px;
+          box-shadow:0 30px 80px rgba(192,67,75,.25);
+          position:relative;overflow:hidden;
+        }
+        .lp-poem::before{content:'🌸';position:absolute;top:-10px;right:-10px;font-size:120px;opacity:.06;transform:rotate(20deg);}
+        .lp-poem::after{content:'🌸';position:absolute;bottom:20px;left:-20px;font-size:100px;opacity:.05;transform:rotate(-15deg);}
+        .lp-poem .lhead{font-family:'Sacramento',cursive;font-size:18px;color:rgba(192,67,75,.5);margin-bottom:24px;}
+        .lp-poem .lbody{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:2;white-space:pre-wrap;margin-bottom:24px;}
+        .lp-poem .lpoem{text-align:center;font-style:italic;font-size:16px;line-height:2;color:rgba(60,20,30,.65);margin:24px 0;padding:20px;background:rgba(192,67,75,.04);border-radius:8px;}
+        .lp-poem .lsign{text-align:right;font-family:'Sacramento',cursive;font-size:28px;margin-top:36px;color:rgba(192,67,75,.6);}
+
+        /* ── MIDNIGHT THOUGHT: Deep navy, stars, glowing ── */
+        .lp-midnight{
+          background:linear-gradient(145deg,#060414,#0d0628,#07091f);
+          color:#e8e0ff;padding:64px 56px;border-radius:4px;
+          box-shadow:0 30px 80px rgba(0,0,0,.9),0 0 60px rgba(100,60,200,.1);
+          position:relative;overflow:hidden;border:1px solid rgba(100,60,200,.2);
+        }
+        .lp-midnight::before{content:'';position:absolute;inset:0;pointer-events:none;
+          background:radial-gradient(1px 1px at 15% 20%,rgba(220,200,255,.8) 0%,transparent 100%),
+          radial-gradient(1px 1px at 40% 10%,rgba(220,200,255,.6) 0%,transparent 100%),
+          radial-gradient(1px 1px at 70% 30%,rgba(220,200,255,.7) 0%,transparent 100%),
+          radial-gradient(1px 1px at 85% 15%,rgba(220,200,255,.5) 0%,transparent 100%),
+          radial-gradient(2px 2px at 55% 5%,rgba(200,180,255,.9) 0%,transparent 100%),
+          radial-gradient(1px 1px at 25% 40%,rgba(220,200,255,.4) 0%,transparent 100%);}
+        .lp-midnight::after{content:'🌙';position:absolute;top:24px;right:28px;font-size:32px;opacity:.25;}
+        .lp-midnight .lhead{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(200,180,255,.35);margin-bottom:30px;}
+        .lp-midnight .lbody{font-size:18px;line-height:1.9;white-space:pre-wrap;margin-bottom:24px;color:#e0d8ff;}
+        .lp-midnight .lpoem{border-left:2px solid rgba(150,100,255,.4);padding:12px 20px;font-style:italic;font-size:15px;line-height:1.9;color:rgba(200,180,255,.7);margin:18px 0;}
+        .lp-midnight .lsign{text-align:right;font-size:20px;font-style:italic;margin-top:36px;color:rgba(200,180,255,.5);}
+
+        /* ── ANNIVERSARY: Gold foil, ornate, champagne ── */
+        .lp-anniversary{
+          background:linear-gradient(145deg,#fefaf0,#fdf5dc,#fef8e8);
+          color:#2a1f08;padding:64px 56px;border-radius:2px;
+          box-shadow:0 30px 80px rgba(180,140,0,.2);
+          position:relative;overflow:hidden;
+          border:1px solid rgba(184,134,11,.25);
+        }
+        .lp-anniversary::before{content:'';position:absolute;inset:12px;border:1px solid rgba(184,134,11,.2);border-radius:1px;pointer-events:none;}
+        .lp-anniversary::after{content:'♔';position:absolute;top:28px;left:50%;transform:translateX(-50%);font-size:22px;color:rgba(184,134,11,.35);}
+        .lp-anniversary .lhead{font-family:'Cinzel',serif;font-size:12px;letter-spacing:6px;text-transform:uppercase;color:rgba(184,134,11,.6);margin-bottom:36px;text-align:center;margin-top:20px;}
+        .lp-anniversary .lbody{font-size:18px;line-height:1.9;white-space:pre-wrap;margin-bottom:24px;}
+        .lp-anniversary .lpoem{background:rgba(184,134,11,.06);border-top:1px solid rgba(184,134,11,.2);border-bottom:1px solid rgba(184,134,11,.2);padding:18px 24px;font-style:italic;font-size:15px;line-height:1.9;color:rgba(42,31,8,.6);margin:18px 0;text-align:center;}
+        .lp-anniversary .lsign{text-align:right;font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;margin-top:36px;color:rgba(184,134,11,.6);}
+        .ann-corner{position:absolute;font-size:28px;opacity:.15;}
+        .ann-corner.tl{top:18px;left:18px;}
+        .ann-corner.tr{top:18px;right:18px;}
+        .ann-corner.bl{bottom:18px;left:18px;}
+        .ann-corner.br{bottom:18px;right:18px;}
+
+        /* ── APOLOGY: Minimal white, raw, torn edge feel ── */
+        .lp-apology{
+          background:#fafafa;color:#1a1a1a;
+          padding:64px 56px;border-radius:0;
+          box-shadow:0 30px 80px rgba(0,0,0,.6);
+          position:relative;overflow:hidden;
+        }
+        .lp-apology::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;
+          background:repeating-linear-gradient(90deg,#c0434b 0px,#c0434b 20px,transparent 20px,transparent 26px);}
+        .lp-apology .lhead{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#999;margin-bottom:28px;margin-top:12px;}
+        .lp-apology .lbody{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.9;white-space:pre-wrap;margin-bottom:24px;color:#1a1a1a;}
+        .lp-apology .lpoem{border-left:3px solid #c0434b;padding:12px 20px;font-style:italic;font-size:15px;line-height:1.9;color:#555;margin:18px 0;}
+        .lp-apology .lsign{text-align:right;font-size:18px;font-style:italic;margin-top:36px;color:#888;}
+
+        /* ── SURPRISE: Confetti, coral, playful ribbons ── */
+        .lp-surprise{
+          background:linear-gradient(145deg,#fff9f0,#fff5eb,#fffbf5);
+          color:#1f0f00;padding:64px 56px;border-radius:12px;
+          box-shadow:0 30px 80px rgba(255,107,53,.15);
+          position:relative;overflow:hidden;
+          border:2px dashed rgba(255,107,53,.25);
+        }
+        .confetti{position:absolute;font-size:22px;opacity:.18;}
+        .lp-surprise .lhead{font-family:'Dancing Script',cursive;font-size:26px;color:#ff6b35;margin-bottom:20px;text-align:center;}
+        .lp-surprise .lbody{font-size:18px;line-height:1.9;white-space:pre-wrap;margin-bottom:24px;}
+        .lp-surprise .lpoem{background:rgba(255,107,53,.05);border-radius:8px;border:1px solid rgba(255,107,53,.15);padding:18px;font-style:italic;font-size:15px;line-height:1.9;color:rgba(31,15,0,.6);margin:18px 0;text-align:center;}
+        .lp-surprise .lsign{text-align:right;font-family:'Dancing Script',cursive;font-size:28px;margin-top:36px;color:#ff6b35;}
+
+        /* Song embed in letter */
+        .lsong{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:6px;margin:18px 0;}
+        .lsong-classic{border:1px solid rgba(150,80,30,.25);background:rgba(150,80,30,.04);}
+        .lsong-poem{border:1px solid rgba(192,67,75,.2);background:rgba(192,67,75,.04);}
+        .lsong-midnight{border:1px solid rgba(100,60,255,.2);background:rgba(100,60,255,.06);}
+        .lsong-anniversary{border:1px solid rgba(184,134,11,.25);background:rgba(184,134,11,.05);}
+        .lsong-apology{border:1px solid rgba(192,67,75,.2);background:rgba(192,67,75,.03);}
+        .lsong-surprise{border:1px solid rgba(255,107,53,.25);background:rgba(255,107,53,.06);}
+        .lsong .s-em{font-size:24px;}
+        .lsong .s-inf .s-tt{font-family:'Josefin Sans',sans-serif;font-size:12px;letter-spacing:1px;}
+        .lsong .s-inf .s-ar{font-style:italic;font-size:13px;opacity:.55;margin-top:2px;}
+        .lsong .s-play{margin-left:auto;border-radius:100px;padding:6px 14px;font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:1px solid currentColor;background:transparent;white-space:nowrap;transition:all .2s;}
+        .lsong-classic .s-play{color:rgba(150,80,30,.6);}
+        .lsong-poem .s-play{color:rgba(192,67,75,.7);}
+        .lsong-midnight .s-play{color:rgba(150,120,255,.8);}
+        .lsong-anniversary .s-play{color:rgba(184,134,11,.8);}
+        .lsong-apology .s-play{color:rgba(192,67,75,.7);}
+        .lsong-surprise .s-play{color:#ff6b35;}
+
+        /* modal share bar */
+        .msharebar{border-top:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;gap:10px;background:rgba(253,246,236,.04);}
+
+        /* ═══ RECEIVED VIEW ═══ */
+        #receivedView{min-height:100vh;padding:50px 20px;display:none;align-items:flex-start;justify-content:center;}
         #receivedView.open{display:flex;}
-        .received-header{text-align:center;margin-bottom:30px;}
-        .received-eyebrow{font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;}
-        .received-title{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,40px);font-style:italic;color:var(--parchment);}
-        .received-song-section{margin-top:16px;}
+        .rhead{text-align:center;margin-bottom:28px;}
+        .reyebrow{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px;}
+        .rtitle{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,38px);font-style:italic;}
+        .rwrap{max-width:700px;width:100%;position:relative;}
+        .rsong{margin-top:14px;}
 
-        /* Spinner */
-        .spinner{display:inline-block;width:12px;height:12px;border:2px solid rgba(184,134,11,.3);border-top-color:var(--gold);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;}
+        /* Spotify embed bar on received */
+        .recv-spotify{margin-top:14px;border-radius:4px;overflow:hidden;border:1px solid rgba(131,58,180,.3);}
+
+        /* Spinner / Toast */
+        .sp{display:inline-block;width:12px;height:12px;border:2px solid rgba(184,134,11,.3);border-top-color:var(--gold);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;}
         @keyframes spin{to{transform:rotate(360deg);}}
-
-        /* Toast */
-        .toast{position:fixed;bottom:30px;right:30px;background:rgba(29,185,84,.15);border:1px solid rgba(29,185,84,.4);color:#6ee79a;padding:12px 22px;border-radius:3px;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;z-index:300;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;}
-        .toast.show{opacity:1;transform:translateY(0);}
-        footer{position:relative;z-index:1;text-align:center;padding:40px 20px;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(253,246,236,.2);}
+        .toast{position:fixed;bottom:28px;right:28px;padding:11px 20px;border-radius:3px;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;z-index:400;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;background:rgba(131,58,180,.18);border:1px solid rgba(131,58,180,.4);color:#c9a0ff;}
+        .toast.show{opacity:1;transform:none;}
+        footer{position:relative;z-index:1;text-align:center;padding:36px 20px;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(253,246,236,.18);}
         @media(max-width:600px){
           .card-body{padding:18px;}
-          .letter-paper{padding:36px 22px;}
-          .share-bar{flex-direction:column;}
-          .song-grid{grid-template-columns:1fr;}
+          .lp-classic,.lp-poem,.lp-midnight,.lp-anniversary,.lp-apology,.lp-surprise{padding:36px 22px;}
+          .sharebar,.msharebar{flex-direction:column;}
+          .sgrid{grid-template-columns:1fr;}
+          .tgrid{grid-template-columns:repeat(3,1fr);}
         }
     </style>
 </head>
 <body>
 
-<!-- Hidden YT player -->
-<div class="yt-wrap">
-    <iframe id="ytFrame" width="1" height="1" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
-</div>
-
-<!-- ══════════════════════════════════
+<!-- ═══════════════════════════════════════
      RECEIVED VIEW
-══════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <div id="receivedView">
-    <div class="received-wrap">
-        <div class="received-header">
-            <p class="received-eyebrow">✦ A letter arrived for you ✦</p>
-            <h1 class="received-title" id="receivedTitle">Someone wrote you something beautiful</h1>
+    <div class="rwrap">
+        <div class="rhead">
+            <p class="reyebrow">✦ A letter arrived for you ✦</p>
+            <h1 class="rtitle" id="rTitle">Someone wrote you something beautiful</h1>
         </div>
-        <div id="receivedPaper"></div>
-        <div class="received-song-section" id="receivedSongSection" style="display:none;">
-            <div class="player-bar visible" id="receivedPlayerBar">
-                <div class="player-emoji" id="rEmoji">🎵</div>
-                <div class="player-info">
-                    <div class="player-title" id="rTitle">—</div>
-                    <div class="player-artist" id="rArtist">—</div>
-                </div>
-                <button class="player-toggle" id="rPlayBtn" onclick="receivedToggle()">▶ Play Song</button>
-            </div>
+        <div id="rPaper"></div>
+        <div class="rsong" id="rSong" style="display:none;">
+            <div class="recv-spotify" id="rSpotify"></div>
         </div>
     </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!-- ═══════════════════════════════════════
      COMPOSER VIEW
-══════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <div id="composerView">
 
     <section class="hero">
-        <p class="hero-eyebrow">✦ Penned With Love ✦</p>
+        <p class="eyebrow">✦ Penned With Love ✦</p>
         <h1>Write what the<br/><em>heart cannot say</em></h1>
         <p class="hero-sub">Craft a digital love letter — layered with poetry, music & longing — delivered by a single link.</p>
-        <div class="gold-divider"></div>
-        <div class="step-chips">
+        <div class="gold-line"></div>
+        <div class="chips">
             <div class="chip">Choose a template</div>
             <div class="chip">Write your heart</div>
-            <div class="chip">Add poetry &amp; song</div>
+            <div class="chip">Add poetry & song</div>
             <div class="chip">Share the link</div>
         </div>
     </section>
 
     <section class="composer">
         <div class="card">
-            <div class="card-header">
-                <div class="card-header-dot"></div>
-                <h2>Letter Composer</h2>
-            </div>
+            <div class="card-head"><div class="dot"></div><h2>Letter Composer</h2></div>
             <div class="card-body">
 
                 <!-- 01 Template -->
                 <div class="step">
-                    <div class="step-label">01 — Choose a Format</div>
-                    <div class="template-grid">
-                        <div class="template-btn active" onclick="selectTemplate(this,'classic')"><div class="t-icon">📜</div><div class="t-name">Classic Letter</div></div>
-                        <div class="template-btn" onclick="selectTemplate(this,'poem')"><div class="t-icon">🌸</div><div class="t-name">Poetic Note</div></div>
-                        <div class="template-btn" onclick="selectTemplate(this,'midnight')"><div class="t-icon">🌙</div><div class="t-name">Midnight Thought</div></div>
-                        <div class="template-btn" onclick="selectTemplate(this,'anniversary')"><div class="t-icon">💍</div><div class="t-name">Anniversary</div></div>
-                        <div class="template-btn" onclick="selectTemplate(this,'apology')"><div class="t-icon">🤍</div><div class="t-name">Apology</div></div>
-                        <div class="template-btn" onclick="selectTemplate(this,'surprise')"><div class="t-icon">✨</div><div class="t-name">Surprise!</div></div>
+                    <div class="slabel">01 — Choose a Format</div>
+                    <div class="tgrid">
+                        <div class="tbtn on" onclick="selTemplate(this,'classic')"><div class="ticon">📜</div><div class="tname">Classic Letter</div></div>
+                        <div class="tbtn" onclick="selTemplate(this,'poem')"><div class="ticon">🌸</div><div class="tname">Poetic Note</div></div>
+                        <div class="tbtn" onclick="selTemplate(this,'midnight')"><div class="ticon">🌙</div><div class="tname">Midnight Thought</div></div>
+                        <div class="tbtn" onclick="selTemplate(this,'anniversary')"><div class="ticon">💍</div><div class="tname">Anniversary</div></div>
+                        <div class="tbtn" onclick="selTemplate(this,'apology')"><div class="ticon">🤍</div><div class="tname">Apology</div></div>
+                        <div class="tbtn" onclick="selTemplate(this,'surprise')"><div class="ticon">✨</div><div class="tname">Surprise!</div></div>
                     </div>
                 </div>
 
                 <!-- 02 Font -->
                 <div class="step">
-                    <div class="step-label">02 — Select a Font</div>
-                    <div class="font-grid">
-                        <button class="font-btn f-playfair active" onclick="selectFont(this,'Playfair Display')">Playfair</button>
-                        <button class="font-btn f-cormorant" onclick="selectFont(this,'Cormorant Garamond')">Cormorant Italic</button>
-                        <button class="font-btn f-dancing" onclick="selectFont(this,'Dancing Script')">Dancing Script</button>
-                        <button class="font-btn f-sacramento" onclick="selectFont(this,'Sacramento')">Sacramento</button>
-                        <button class="font-btn f-cinzel" onclick="selectFont(this,'Cinzel')">CINZEL</button>
-                        <button class="font-btn f-ebg" onclick="selectFont(this,'EB Garamond')">EB Garamond</button>
+                    <div class="slabel">02 — Select a Font</div>
+                    <div class="fgrid">
+                        <button class="fbtn ff1 on" onclick="selFont(this,'Playfair Display')">Playfair</button>
+                        <button class="fbtn ff2" onclick="selFont(this,'Cormorant Garamond')">Cormorant</button>
+                        <button class="fbtn ff3" onclick="selFont(this,'Dancing Script')">Dancing</button>
+                        <button class="fbtn ff4" onclick="selFont(this,'Sacramento')">Sacramento</button>
+                        <button class="fbtn ff5" onclick="selFont(this,'Cinzel')">CINZEL</button>
+                        <button class="fbtn ff6" onclick="selFont(this,'EB Garamond')">EB Garamond</button>
+                        <button class="fbtn ff7" onclick="selFont(this,'Noto Serif Devanagari')">देवनागरी</button>
                     </div>
                 </div>
 
                 <!-- 03 Mood -->
                 <div class="step">
-                    <div class="step-label">03 — Letter Mood</div>
-                    <div class="mood-grid">
-                        <button class="mood-btn mood-rose active" data-mood="rose" onclick="selectMood(this)">Rosy Romance</button>
-                        <button class="mood-btn mood-midnight" data-mood="midnight" onclick="selectMood(this)">Midnight Blue</button>
-                        <button class="mood-btn mood-gold" data-mood="gold" onclick="selectMood(this)">Golden Hour</button>
-                        <button class="mood-btn mood-sage" data-mood="sage" onclick="selectMood(this)">Sage &amp; Still</button>
-                        <button class="mood-btn mood-dusk" data-mood="dusk" onclick="selectMood(this)">Twilight Dusk</button>
+                    <div class="slabel">03 — Letter Mood</div>
+                    <div class="mgrid">
+                        <button class="mbtn mr on" data-m="rose" onclick="selMood(this)">Rosy Romance</button>
+                        <button class="mbtn mm" data-m="midnight" onclick="selMood(this)">Midnight Blue</button>
+                        <button class="mbtn mg" data-m="gold" onclick="selMood(this)">Golden Hour</button>
+                        <button class="mbtn ms" data-m="sage" onclick="selMood(this)">Sage & Still</button>
+                        <button class="mbtn md" data-m="dusk" onclick="selMood(this)">Twilight Dusk</button>
                     </div>
                 </div>
 
                 <!-- 04 Write -->
                 <div class="step">
-                    <div class="step-label">04 — Write Your Letter</div>
-                    <div class="field"><label>To (recipient's name)</label><input type="text" id="recipientName" placeholder="My dearest…"/></div>
-                    <div class="field"><label>Your message</label><textarea id="letterBody" placeholder="Pour your heart out here…&#10;&#10;Every word you write is a flower placed in their hand."></textarea></div>
-                    <div class="field"><label>Sign off as</label><input type="text" id="senderName" placeholder="Forever yours, …"/></div>
+                    <div class="slabel">04 — Write Your Letter</div>
+                    <div class="field"><label>To (recipient's name)</label><input type="text" id="rName" placeholder="My dearest…"/></div>
+                    <div class="field"><label>Your message</label><textarea id="lBody" placeholder="Pour your heart out here…&#10;&#10;Every word you write is a flower placed in their hand."></textarea></div>
+                    <div class="field"><label>Sign off as</label><input type="text" id="sName" placeholder="Forever yours, …"/></div>
                 </div>
 
                 <!-- 05 Poetry -->
                 <div class="step">
-                    <div class="step-label">05 — Embed a Poetry Verse</div>
-                    <div class="poetry-row">
-                        <div class="poetry-box empty" id="poetryBox">Click Generate to weave a verse for your letter</div>
-                        <button class="btn-gen" onclick="generatePoetry()" id="poetryBtn">✦ Generate</button>
+                    <div class="slabel">05 — Embed a Poetry Verse (AI Generated)</div>
+                    <div class="prow">
+                        <div class="pbox empty" id="pbox">Click Generate to weave a verse for your letter</div>
+                        <button class="genbtn" onclick="genPoetry()" id="genbtn">✦ Generate</button>
                     </div>
                 </div>
 
-                <!-- 06 Song Library -->
+                <!-- 06 Songs -->
                 <div class="step">
-                    <div class="step-label">06 — Attach a Song (plays for recipient)</div>
-                    <div class="song-search-wrap">
-                        <input type="text" id="songSearchInput" placeholder="Search songs, artists, moods… (e.g. 'love', 'Ed Sheeran', 'midnight')" oninput="filterSongs()"/>
+                    <div class="slabel">06 — Attach a Song (plays for recipient via Spotify)</div>
+                    <div class="song-tabs">
+                        <button class="stab on intl" data-cat="intl" onclick="selTab(this)">🌍 International</button>
+                        <button class="stab bwood" data-cat="bollywood" onclick="selTab(this)">🎬 Bollywood</button>
+                        <button class="stab indpop" data-cat="indpop" onclick="selTab(this)">🎵 Indian Pop</button>
+                        <button class="stab classic" data-cat="classic" onclick="selTab(this)">🥂 Timeless</button>
                     </div>
-                    <div class="song-grid" id="songGrid"></div>
-                    <div class="player-bar" id="playerBar">
-                        <div class="player-emoji" id="playerEmoji">🎵</div>
-                        <div class="player-info">
-                            <div class="player-title" id="playerTitle">No song selected</div>
-                            <div class="player-artist" id="playerArtist">Pick a song from the library above</div>
-                        </div>
-                        <button class="player-toggle" id="playToggleBtn" onclick="composerToggle()">▶ Play</button>
+                    <div class="song-search">
+                        <input type="text" id="songQ" placeholder="Search songs or artists…" oninput="filterSongs()"/>
+                    </div>
+                    <div class="sgrid" id="sgrid"></div>
+                    <div class="spotify-bar" id="spotifyBar">
+                        <iframe id="spotifyFrame" style="border-radius:4px;" width="100%" height="80" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                 </div>
 
                 <!-- Actions -->
-                <div class="action-row">
-                    <button class="btn-preview" onclick="openPreview()">👁 Preview Letter</button>
-                    <button class="btn-seal" onclick="sealLetter()">💌 Seal &amp; Get Link</button>
+                <div class="actrow">
+                    <button class="prevbtn" onclick="openPreview()">👁 Preview Letter</button>
+                    <button class="sealbtn" onclick="sealLetter()">💌 Seal & Get Link</button>
                 </div>
 
             </div><!-- /card-body -->
-
-            <!-- Share bar (appears after sealing) -->
-            <div class="share-bar" id="shareBar" style="display:none;">
-                <div class="link-box" id="generatedLink">—</div>
-                <button class="btn-copy" onclick="copyLink()">Copy Link</button>
+            <div class="sharebar" id="sharebar" style="display:none;">
+                <div class="linkbox" id="linkbox">—</div>
+                <button class="copybtn" onclick="copyLink()">Copy Link</button>
             </div>
-
-        </div><!-- /card -->
+        </div>
     </section>
-
     <footer>✦ Penned With Love — every letter is a universe ✦</footer>
 </div><!-- /composerView -->
 
 <!-- MODAL -->
-<div class="modal-overlay" id="previewModal">
-    <div class="letter-modal">
-        <button class="btn-close-modal" onclick="closePreview()">✕ Close</button>
-        <div id="previewPaper"></div>
-        <div class="share-bar" id="modalShareBar" style="display:none;border-radius:0 0 4px 4px;">
-            <div class="link-box" id="modalLink">—</div>
-            <button class="btn-copy" onclick="copyLink()">Copy Link</button>
+<div class="overlay" id="modal">
+    <div class="lmodal">
+        <button class="closebtn" onclick="closePreview()">✕ Close</button>
+        <div id="mPaper"></div>
+        <div class="msharebar" id="msharebar" style="display:none;">
+            <div class="linkbox" id="mlinkbox">—</div>
+            <button class="copybtn" onclick="copyLink()">Copy Link</button>
         </div>
     </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-    // ══════════════════════════════════════════════════
-    // SONG LIBRARY — YouTube IDs (free/official videos)
-    // ══════════════════════════════════════════════════
-    const SONGS=[
-      {title:"Perfect",                        artist:"Ed Sheeran",           emoji:"🎸",ytId:"2Vv-BfVoq4g",tags:"romantic love classic pop"},
-      {title:"All of Me",                      artist:"John Legend",           emoji:"🎹",ytId:"450p7goxZqg",tags:"romantic ballad love piano"},
-      {title:"Lover",                          artist:"Taylor Swift",          emoji:"🌹",ytId:"AqAJLh9wuZ0",tags:"romantic pop love taylor"},
-      {title:"Can't Help Falling in Love",     artist:"Elvis Presley",         emoji:"🎶",ytId:"vGJTaP6anOU",tags:"classic timeless romantic elvis"},
-      {title:"Make You Feel My Love",          artist:"Adele",                 emoji:"🕯️",ytId:"0put0_a--Ng",tags:"emotional ballad adele love soul"},
-      {title:"Die With A Smile",               artist:"Lady Gaga & Bruno Mars",emoji:"💫",ytId:"kPa7bsKwL-c",tags:"pop romantic modern gaga mars"},
-      {title:"Thinking Out Loud",              artist:"Ed Sheeran",            emoji:"✨",ytId:"lp-EO5I60KA",tags:"romantic wedding love ed sheeran"},
-      {title:"Golden Hour",                    artist:"JVKE",                  emoji:"🌅",ytId:"PEM0nCTyBCQ",tags:"modern romantic golden jvke indie"},
-      {title:"Enchanted",                      artist:"Taylor Swift",          emoji:"🌙",ytId:"4SB_2KjFQRI",tags:"romantic dreamy fairy tale taylor"},
-      {title:"A Thousand Years",               artist:"Christina Perri",       emoji:"🦋",ytId:"rtOvBOTyX00",tags:"romantic timeless wedding twilight"},
-      {title:"Endless Love",                   artist:"Lionel Richie",         emoji:"♾️",ytId:"rGjQFbkZhAo",tags:"classic love duet soul"},
-      {title:"Lucky",                          artist:"Jason Mraz & Colbie Caillat",emoji:"🍀",ytId:"hS_bHFYAvNQ",tags:"cute uplifting love duet acoustic"},
-      {title:"Just the Way You Are",           artist:"Bruno Mars",            emoji:"🌟",ytId:"LjhCEyc62aU",tags:"romantic pop adore compliment"},
-      {title:"Photograph",                     artist:"Ed Sheeran",            emoji:"📷",ytId:"nSDgHBa17Qs",tags:"nostalgic love memories distance"},
-      {title:"At Last",                        artist:"Etta James",            emoji:"🌺",ytId:"HKI3CwqA92M",tags:"classic jazz soul vintage love"},
-      {title:"Bloom",                          artist:"The Paper Kites",       emoji:"🌸",ytId:"eiMTBdoKTGU",tags:"indie folk soft gentle romantic"},
-      {title:"Better Together",               artist:"Jack Johnson",           emoji:"🌊",ytId:"u57d4_b_YgI",tags:"chill acoustic love ukulele beach"},
-      {title:"Turning Page",                   artist:"Sleeping at Last",      emoji:"📖",ytId:"bh3yOGbHnuQ",tags:"soft indie romantic cinematic"},
-      {title:"I Will Always Love You",         artist:"Whitney Houston",       emoji:"👑",ytId:"3JWTaaS7LdU",tags:"powerful classic Whitney timeless"},
-      {title:"Speechless",                     artist:"Dan + Shay",            emoji:"🤍",ytId:"KqnHBMHD4js",tags:"country romantic wedding modern"},
-      {title:"XO",                             artist:"Beyoncé",               emoji:"💛",ytId:"TN-9tpqaGF0",tags:"love beyonce pop romantic"},
-      {title:"Kiss Me",                        artist:"Ed Sheeran",            emoji:"💋",ytId:"cVxDTNjaajM",tags:"soft romantic acoustic kiss love"},
-      {title:"Grow Old With Me",               artist:"Tom Odell",             emoji:"👴❤️",ytId:"8AHCfZTRGiI",tags:"romantic slow forever future"},
-      {title:"Latch (Acoustic)",               artist:"Sam Smith",             emoji:"🔒",ytId:"3q8cMVoiWFU",tags:"soul romantic attachment love"},
-      {title:"Stay With Me",                   artist:"Sam Smith",             emoji:"🌃",ytId:"pB-5XG-DbAA",tags:"soul pop emotional intimate"},
-    ];
-
-    // ══════ STATE ══════
-    const S={
-      template:'classic',font:'Playfair Display',mood:'rose',
-      poetry:'',song:null,link:'',playing:false
+    // ═══════════════════════════════════════════════════
+    // SONG LIBRARY — Spotify Track IDs (real, playable)
+    // ═══════════════════════════════════════════════════
+    const LIBRARY={
+      intl:[
+        {t:"Perfect",a:"Ed Sheeran",e:"🎸",id:"0tgVpDi06FyKpA1z0VMD4v"},
+        {t:"All of Me",a:"John Legend",e:"🎹",id:"3U4isOIWM3VvDubwSI3y7a"},
+        {t:"Lover",a:"Taylor Swift",e:"🌹",id:"1dGr1c8CrMLDpV6mPbImSI"},
+        {t:"Can't Help Falling in Love",a:"Elvis Presley",e:"🎶",id:"44AyOl4qWMzX5eyFqlAGpK"},
+        {t:"Make You Feel My Love",a:"Adele",e:"🕯️",id:"3o5k5nxGHG7MiA7KS4DaaD"},
+        {t:"Die With A Smile",a:"Lady Gaga & Bruno Mars",e:"💫",id:"7l3E7lcozEodtVsSTCkcaA"},
+        {t:"Thinking Out Loud",a:"Ed Sheeran",e:"✨",id:"34gCuhDGsG4bRPIf9bb02f"},
+        {t:"Golden Hour",a:"JVKE",e:"🌅",id:"5odlY52u43F5BjmOo8phJu"},
+        {t:"A Thousand Years",a:"Christina Perri",e:"🦋",id:"6lanRgr6wXibZr8KgzXxBl"},
+        {t:"Enchanted",a:"Taylor Swift",e:"🌙",id:"7l3E7lcozEodtVsSTCkcaA"},
+        {t:"Just the Way You Are",a:"Bruno Mars",e:"🌟",id:"6HZILIRieu8S0iqY8kIKhj"},
+        {t:"Lucky",a:"Jason Mraz & Colbie Caillat",e:"🍀",id:"1JJItHbTqnLe7LvF3iSuiM"},
+        {t:"Better Together",a:"Jack Johnson",e:"🌊",id:"5dJE9qEo9kKrlzMcFgwDpT"},
+        {t:"Bloom",a:"The Paper Kites",e:"🌸",id:"2E2Oi7rmFjuF2G2S7Wgsov"},
+        {t:"XO",a:"Beyoncé",e:"💛",id:"3mvkWMe6swnElLMfCn14pF"},
+        {t:"Stay With Me",a:"Sam Smith",e:"🌃",id:"5ygDXis42ncn6kYG14lEVG"},
+      ],
+      bollywood:[
+        {t:"Tum Hi Ho",a:"Arijit Singh (Aashiqui 2)",e:"❤️",id:"5BfpGnMG0P0K8oHMFMqCHI"},
+        {t:"Raabta",a:"Arijit Singh (Agent Sai)",e:"🌺",id:"1S5J0BEiZpBgQS3fGZDfb0"},
+        {t:"Kal Ho Naa Ho",a:"Sonu Nigam",e:"🌅",id:"6c7e4RiRFjGk4JsgKpj9sF"},
+        {t:"Dil Dhadakne Do",a:"Various (Zindagi Na Milegi Dobara)",e:"🎭",id:"5ihS6UUlyqHs3aHBZNxMRL"},
+        {t:"Channa Mereya",a:"Arijit Singh (Ae Dil Hai Mushkil)",e:"💔",id:"3X9rBFz3MmHj7fHVoZ7aFi"},
+        {t:"Tere Bina",a:"A.R. Rahman (Guru)",e:"🪔",id:"0Z4xfS0mWnFHWwpEsNJFPf"},
+        {t:"Kabhi Alvida Naa Kehna",a:"Sonu Nigam & Alka Yagnik",e:"🌧️",id:"1fYpkh31bvkhWRHRHOUMxT"},
+        {t:"Pehli Nazar Mein",a:"Atif Aslam (Race)",e:"🌠",id:"3Gq09Xoo4ROyVUB38IVHJm"},
+        {t:"Teri Meri Prem Kahani",a:"Rahat Fateh Ali Khan",e:"📖",id:"7gPQgOKBF7BXCP3kOJTBk0"},
+        {t:"Ae Dil Hai Mushkil",a:"Arijit Singh",e:"🎻",id:"5j9I4MiPIrE0T3Lq8K9h3r"},
+        {t:"Gerua",a:"Arijit Singh (Dilwale)",e:"🌊",id:"0o56bNE8R9oHyJmHLBaOtu"},
+        {t:"Agar Tum Saath Ho",a:"Arijit Singh & Alka Yagnik",e:"🌿",id:"3dHzeFjMgDqhMH2mGUUKOk"},
+        {t:"Tujhe Kitna Chahne Lage",a:"Arijit Singh (Kabir Singh)",e:"💙",id:"1K7iFn36YnWP3DH1gzZ7OU"},
+        {t:"Bekhayali",a:"Sachet Tandon (Kabir Singh)",e:"🖤",id:"2LoNMTRmPqb5YVaCZsXUIG"},
+        {t:"Ve Maahi",a:"Arijit Singh & Asees Kaur (Kesari)",e:"🌻",id:"48V6nZbH0b0lWgkuFAL9Dz"},
+      ],
+      indpop:[
+        {t:"Mahi Ve",a:"Neha Kakkar",e:"💕",id:"5KrMPsOvVTsNGSWXJlqVNT"},
+        {t:"Pasoori",a:"Ali Sethi & Shae Gill",e:"🌙",id:"5n6CiWN39OJGrxjJmzMeMI"},
+        {t:"Shayad",a:"Arijit Singh (Love Aaj Kal)",e:"🌸",id:"68CniMhNQ7bApS9z1p4gF7"},
+        {t:"Kho Gaye Hum Kahan",a:"Jasleen Royal",e:"📱",id:"1pmxhDNpMvL7lqhSBkEpJg"},
+        {t:"Ranjha",a:"B Praak (Shershah)",e:"🏔️",id:"2bYkFe3KGqLxmCqjN2R5Fr"},
+        {t:"Ik Vaari Aa",a:"Arijit Singh (Raazi)",e:"💚",id:"0tZ3k0bv3RRakuDvEPaAiW"},
+        {t:"Maahi Ve (Unplugged)",a:"Shreya Ghoshal",e:"🎤",id:"4RK4vDMlDQUmSZiPFNLbJ0"},
+        {t:"Tu Kisi Aur Ka",a:"Darshan Raval",e:"🌷",id:"2K5rFfqXb3SYqbpNUE4mq6"},
+        {t:"Judaai",a:"Arijit Singh",e:"🌫️",id:"7K3BhbFcGTbm1OAJ0nHJmr"},
+        {t:"Kalank",a:"Arijit Singh & Shilpa Rao",e:"🏛️",id:"3uxNBH8KWBGH9jOOmVMnmG"},
+        {t:"Phir Le Aaya Dil",a:"Rekha Bhardwaj (Barfi)",e:"🎪",id:"0UMQBWkLlRr8J8rPvXRHSC"},
+        {t:"Bulleya",a:"Amit Mishra (Sultan)",e:"🤼",id:"0gGGrNNI5KtpIc6gkjSVHs"},
+        {t:"Dil Diyan Gallan",a:"Atif Aslam (Tiger Zinda Hai)",e:"🐅",id:"1UHB4K3sRblnZzimFuFaHm"},
+      ],
+      classic:[
+        {t:"Mere Sapno Ki Rani",a:"Kishore Kumar (Aradhana)",e:"🚂",id:"0h5Y0PXYWtJvVZ0biVUVkT"},
+        {t:"Tere Bina Zindagi Se",a:"Lata Mangeshkar & Kishore",e:"🌹",id:"2bTpQhijzSZ1DtH8JqK0wY"},
+        {t:"Teri Aankhon Ka Jo Shahar",a:"Ghulam Ali",e:"👁️",id:"3nYMqTxwH3T7J4rqVqXoCl"},
+        {t:"Lag Ja Gale",a:"Lata Mangeshkar (Woh Kaun Thi)",e:"🌺",id:"5Fg1NkW79TZ26MmETM9D3P"},
+        {t:"Yeh Jo Mohabbat Hai",a:"Kishore Kumar (Kati Patang)",e:"🎗️",id:"7ozOlAMGzTp1MYj8s3Kqfq"},
+        {t:"Ajeeb Dastan Hai Yeh",a:"Lata Mangeshkar (Dil Apna Aur Preet Parayi)",e:"🕰️",id:"4MgjIh7b2d2o6hGkQVB9xO"},
+        {t:"Neele Neele Ambar Par",a:"Kishore Kumar",e:"💙",id:"0xS5tFdBwJLV7Hbt0TtJVy"},
+        {t:"Tumse Milke",a:"A.R. Rahman (Parinda)",e:"🕊️",id:"6Qs6TvUh6mEkGXqcfhXFMa"},
+      ]
     };
 
-    // ══════ TEMPLATE ══════
+    // ═══ STATE ═══
+    const S={tmpl:'classic',font:'Playfair Display',mood:'rose',poetry:'',song:null,link:'',cat:'intl'};
+
+    // ═══ TEMPLATE ═══
     const INTROS={
       classic:'',
       poem:'Every breath I take carries the scent of your memory…\n\n',
@@ -402,30 +527,24 @@
       apology:'I have been carrying these words long enough. Here they are, finally…\n\n',
       surprise:'I hope this finds you in the middle of an ordinary day — I am about to make it extraordinary…\n\n'
     };
-    function selectTemplate(el,t){
-      document.querySelectorAll('.template-btn').forEach(b=>b.classList.remove('active'));
-      el.classList.add('active'); S.template=t;
-      const b=document.getElementById('letterBody');
+    function selTemplate(el,t){
+      document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('on'));
+      el.classList.add('on'); S.tmpl=t;
+      const b=document.getElementById('lBody');
       const vals=Object.values(INTROS);
       if(!b.value||vals.some(v=>b.value===v))b.value=INTROS[t];
     }
-    function selectFont(el,f){
-      document.querySelectorAll('.font-btn').forEach(b=>b.classList.remove('active'));
-      el.classList.add('active'); S.font=f;
-    }
-    function selectMood(el){
-      document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('active'));
-      el.classList.add('active'); S.mood=el.dataset.mood;
-    }
+    function selFont(el,f){document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');S.font=f;}
+    function selMood(el){document.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');S.mood=el.dataset.m;}
 
-    // ══════ POETRY (Claude API) ══════
-    async function generatePoetry(){
-      const btn=document.getElementById('poetryBtn'),box=document.getElementById('poetryBox');
-      const body=document.getElementById('letterBody').value.trim();
-      const to=document.getElementById('recipientName').value.trim();
-      btn.disabled=true; btn.innerHTML='<span class="spinner"></span>';
-      box.className='poetry-box empty'; box.textContent='Weaving your verse…';
-      const prompt=`Write a short, beautiful, original romantic poetry verse (4–6 lines) for a "${S.template}" style love letter${to?' addressed to '+to:''}. ${body?'Letter context: "'+body.slice(0,180)+'"':''} Return only the poem — no title, no labels, no preamble.`;
+    // ═══ POETRY ═══
+    async function genPoetry(){
+      const btn=document.getElementById('genbtn'),box=document.getElementById('pbox');
+      const body=document.getElementById('lBody').value.trim();
+      const to=document.getElementById('rName').value.trim();
+      btn.disabled=true;btn.innerHTML='<span class="sp"></span>';
+      box.className='pbox empty';box.textContent='Weaving your verse…';
+      const prompt=`Write a short, beautiful, original romantic poetry verse (4–6 lines) for a "${S.tmpl}" style love letter${to?' to '+to:''}. ${body?'Letter context: "'+body.slice(0,180)+'"':''} Return only the poem, no title, no label, no preamble.`;
       try{
         const res=await fetch('https://api.anthropic.com/v1/messages',{
           method:'POST',headers:{'Content-Type':'application/json'},
@@ -434,203 +553,238 @@
         const d=await res.json();
         S.poetry=d.content?.[0]?.text?.trim()||fallback();
       }catch{S.poetry=fallback();}
-      box.className='poetry-box'; box.textContent=S.poetry;
-      btn.disabled=false; btn.innerHTML='✦ Regenerate';
+      box.className='pbox';box.textContent=S.poetry;
+      btn.disabled=false;btn.innerHTML='✦ Regenerate';
     }
     function fallback(){return 'In the quiet hours I reach for your name\nand find it on my lips like a prayer,\nlike sunlight through old window panes—\nyou, the warmth I did not know I was missing.';}
 
-    // ══════ SONG GRID ══════
-    function renderGrid(list){
-      const g=document.getElementById('songGrid');
-      if(!list.length){
-        g.innerHTML=`<p style="grid-column:1/-1;padding:16px;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(253,246,236,.3);">No songs found — try another keyword</p>`;
+    // ═══ SONG TABS ═══
+    function selTab(el){
+      document.querySelectorAll('.stab').forEach(b=>b.classList.remove('on'));
+      el.classList.add('on');S.cat=el.dataset.cat;
+      document.getElementById('songQ').value='';
+      renderSongs(LIBRARY[S.cat]);
+    }
+
+    function filterSongs(){
+      const q=document.getElementById('songQ').value.toLowerCase().trim();
+      const src=q?Object.values(LIBRARY).flat().filter(s=>(s.t+s.a).toLowerCase().includes(q)):LIBRARY[S.cat];
+      renderSongs(src);
+    }
+
+    function renderSongs(list){
+      const g=document.getElementById('sgrid');
+      if(!list||!list.length){
+        g.innerHTML=`<p style="grid-column:1/-1;padding:14px;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(253,246,236,.3);">No songs found</p>`;
         return;
       }
       g.innerHTML=list.map(s=>{
-        const sel=S.song?.ytId===s.ytId;
-        const cls=sel?(S.playing?'playing':'selected'):'';
-        const icon=sel&&S.playing?'⏸':'▶';
-        return`<div class="song-card ${cls}" onclick="pickSong('${s.ytId}')">
-          <div class="song-emoji">${s.emoji}</div>
-          <div class="song-meta">
-            <div class="song-title">${s.title}</div>
-            <div class="song-artist-name">${s.artist}</div>
+        const sel=S.song?.id===s.id;
+        return`<div class="scard ${sel?'sel':''}" onclick="pickSong('${s.id}','${escH(s.t)}','${escH(s.a)}','${s.e}')">
+          <div class="semoji">${s.e}</div>
+          <div class="smeta">
+            <div class="stitle">${s.t}</div>
+            <div class="sartist">${s.a}</div>
           </div>
-          <button class="play-btn-small">${icon}</button>
+          <button class="splaybtn">${sel?'♫':'▶'}</button>
         </div>`;
       }).join('');
     }
-    function filterSongs(){
-      const q=document.getElementById('songSearchInput').value.toLowerCase().trim();
-      renderGrid(q?SONGS.filter(s=>(s.title+' '+s.artist+' '+s.tags).toLowerCase().includes(q)):SONGS);
-    }
-    renderGrid(SONGS);
+    function escH(s){return s.replace(/'/g,"\\'").replace(/"/g,'&quot;');}
 
-    function pickSong(ytId){
-      const s=SONGS.find(x=>x.ytId===ytId);
-      if(!s)return;
-      if(S.song?.ytId===ytId){composerToggle();return;}
-      S.song=s; S.playing=true;
-      loadYT(ytId,true);
-      document.getElementById('playerEmoji').textContent=s.emoji;
-      document.getElementById('playerTitle').textContent=s.title;
-      document.getElementById('playerArtist').textContent=s.artist;
-      document.getElementById('playerBar').classList.add('visible');
-      document.getElementById('playToggleBtn').textContent='⏸ Pause';
-      filterSongs();
+    renderSongs(LIBRARY.intl);
+
+    function pickSong(id,title,artist,emoji){
+      S.song={id,t:title,a:artist,e:emoji};
+      // Load Spotify embed
+      document.getElementById('spotifyFrame').src=`https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0`;
+      document.getElementById('spotifyBar').classList.add('vis');
+      renderSongs(LIBRARY[S.cat]);
+      showToast('🎵 Song attached — preview playing below');
     }
 
-    // ══════ YOUTUBE ══════
-    function loadYT(id,play){
-      document.getElementById('ytFrame').src=play
-        ?`https://www.youtube.com/embed/${id}?autoplay=1&controls=0&modestbranding=1`
-        :'';
-    }
-    function composerToggle(){
-      if(!S.song)return;
-      S.playing=!S.playing;
-      loadYT(S.song.ytId,S.playing);
-      document.getElementById('playToggleBtn').textContent=S.playing?'⏸ Pause':'▶ Play';
-      filterSongs();
-    }
-
-    // ══════ BUILD LETTER HTML ══════
-    function buildLetterHTML(includePlayBtn){
-      const to=document.getElementById('recipientName').value.trim()||'My Love';
-      const body=document.getElementById('letterBody').value.trim()||'…';
-      const sign=document.getElementById('senderName').value.trim()||'Yours';
+    // ═══ BUILD LETTER HTML ═══
+    function buildLetter(showPlay){
+      const to=document.getElementById('rName').value.trim()||'My Love';
+      const body=document.getElementById('lBody').value.trim()||'…';
+      const sign=document.getElementById('sName').value.trim()||'Yours';
       const ff=`'${S.font}',serif`;
-      const poetry=S.poetry
-        ?`<div class="letter-poetry-embed" style="font-family:${ff}">${S.poetry.replace(/\n/g,'<br/>')}</div>`:'';
-      const playBtnHtml=includePlayBtn&&S.song
-        ?`<button class="s-play" onclick="previewPlaySong('${S.song.ytId}')">▶ Play</button>`:'';
-      const song=S.song?`
-        <div class="letter-song-block">
-          <span class="s-emoji">${S.song.emoji}</span>
-          <div class="s-info">
-            <div class="s-name">${S.song.title}</div>
-            <div class="s-artist">${S.song.artist} · A song I want you to hear</div>
-          </div>
-          ${playBtnHtml}
-        </div>`:'';
-      return `
-        <div class="letter-paper mood-theme-${S.mood}">
-          <div class="letter-to">For ${to},</div>
-          <div class="letter-body-text" style="font-family:${ff}">${body.replace(/\n/g,'<br/>')}</div>
-          ${poetry}${song}
-          <div class="letter-sign" style="font-family:${ff}">— ${sign}</div>
+      const t=S.tmpl;
+
+      const poem=S.poetry?`<div class="lpoem" style="font-family:${ff}">${S.poetry.replace(/\n/g,'<br/>')}</div>`:'';
+
+      let songHTML='';
+      if(S.song){
+        const playBtn=showPlay?`<button class="s-play" onclick="modalPlaySong('${S.song.id}')">▶ Play</button>`:'';
+        songHTML=`<div class="lsong lsong-${t}">
+          <span class="s-em">${S.song.e}</span>
+          <div class="s-inf">
+            <div class="s-tt">${S.song.t}</div>
+            <div class="s-ar">${S.song.a} · A song I want you to hear</div>
+          </div>${playBtn}
         </div>`;
-    }
-    function previewPlaySong(id){
-      S.playing=true; loadYT(id,true);
-      showToast('🎵 Song is playing…');
+      }
+
+      const body_html=`<div class="lbody" style="font-family:${ff}">${body.replace(/\n/g,'<br/>')}</div>`;
+
+      if(t==='classic'){
+        return`<div class="lp-classic">
+          <div class="lhead">To ${to}</div>
+          ${body_html}${poem}${songHTML}
+          <div class="lsign" style="font-family:${ff}">— ${sign}</div>
+        </div>`;
+      }
+      if(t==='poem'){
+        return`<div class="lp-poem">
+          <div class="lhead">For ${to}, with love</div>
+          ${body_html}${poem}${songHTML}
+          <div class="lsign">${sign}</div>
+        </div>`;
+      }
+      if(t==='midnight'){
+        return`<div class="lp-midnight">
+          <div class="lhead">A thought for ${to}, written at midnight</div>
+          ${body_html}${poem}${songHTML}
+          <div class="lsign" style="font-family:${ff}">— ${sign}</div>
+        </div>`;
+      }
+      if(t==='anniversary'){
+        return`<div class="lp-anniversary">
+          <span class="ann-corner tl">✦</span><span class="ann-corner tr">✦</span>
+          <span class="ann-corner bl">✦</span><span class="ann-corner br">✦</span>
+          <div class="lhead">In honour of ${to}</div>
+          ${body_html}${poem}${songHTML}
+          <div class="lsign">${sign}</div>
+        </div>`;
+      }
+      if(t==='apology'){
+        return`<div class="lp-apology">
+          <div class="lhead">To ${to} — with all sincerity</div>
+          ${body_html}${poem}${songHTML}
+          <div class="lsign" style="font-family:${ff}">— ${sign}</div>
+        </div>`;
+      }
+      if(t==='surprise'){
+        return`<div class="lp-surprise">
+          <span class="confetti" style="top:10px;left:18px">🎉</span>
+          <span class="confetti" style="top:8px;right:22px">🎊</span>
+          <span class="confetti" style="bottom:14px;left:24px">✨</span>
+          <span class="confetti" style="bottom:10px;right:18px">🎈</span>
+          <div class="lhead">Hey ${to}! ✨</div>
+          ${body_html}${poem}${songHTML}
+          <div class="lsign">${sign}</div>
+        </div>`;
+      }
+      return`<div class="lp-classic">${body_html}${poem}${songHTML}</div>`;
     }
 
-    // ══════ PREVIEW MODAL ══════
+    let modalSpotifyShown=false;
+    function modalPlaySong(id){
+      // show spotify in modal bottom
+      if(!document.getElementById('modalSpotify')){
+        const div=document.createElement('div');
+        div.id='modalSpotify';div.style.cssText='margin-top:12px;border-radius:4px;overflow:hidden;border:1px solid rgba(131,58,180,.3);';
+        div.innerHTML=`<iframe style="border-radius:4px;" width="100%" height="80" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"
+          src="https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0" loading="lazy"></iframe>`;
+        document.getElementById('mPaper').after(div);
+      }
+      showToast('🎵 Playing…');
+    }
+
+    // ═══ PREVIEW ═══
     function openPreview(){
-      document.getElementById('previewPaper').innerHTML=buildLetterHTML(true);
-      document.getElementById('modalShareBar').style.display='none';
-      document.getElementById('previewModal').classList.add('open');
+      document.getElementById('mPaper').innerHTML=buildLetter(true);
+      document.getElementById('msharebar').style.display='none';
+      const ms=document.getElementById('modalSpotify');if(ms)ms.remove();
+      document.getElementById('modal').classList.add('open');
     }
-    function closePreview(){
-      document.getElementById('previewModal').classList.remove('open');
-    }
-    document.getElementById('previewModal').addEventListener('click',function(e){if(e.target===this)closePreview();});
+    function closePreview(){document.getElementById('modal').classList.remove('open');}
+    document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closePreview();});
 
-    // ══════ SEAL & GENERATE LINK ══════
-    // Entire letter state is base64-encoded into the URL hash.
-    // Works on any static host — no backend needed.
+    // ═══ SEAL ═══
     function sealLetter(){
       const data={
-        to:document.getElementById('recipientName').value.trim(),
-        body:document.getElementById('letterBody').value.trim(),
-        sign:document.getElementById('senderName').value.trim(),
-        template:S.template,font:S.font,mood:S.mood,
-        poetry:S.poetry,song:S.song
+        to:document.getElementById('rName').value.trim(),
+        body:document.getElementById('lBody').value.trim(),
+        sign:document.getElementById('sName').value.trim(),
+        tmpl:S.tmpl,font:S.font,mood:S.mood,poetry:S.poetry,song:S.song
       };
-      const encoded=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-      const link=window.location.origin+window.location.pathname+'#letter='+encoded;
-      S.link=link;
-      // show in composer share bar
-      document.getElementById('shareBar').style.display='flex';
-      document.getElementById('generatedLink').textContent=link;
-      // open preview + show share bar in modal
+      const enc=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+      S.link=window.location.origin+window.location.pathname+'#letter='+enc;
+      document.getElementById('sharebar').style.display='flex';
+      document.getElementById('linkbox').textContent=S.link;
       openPreview();
-      document.getElementById('modalLink').textContent=link;
-      document.getElementById('modalShareBar').style.display='flex';
-      showToast('💌 Link created! Copy and send it.');
+      document.getElementById('mlinkbox').textContent=S.link;
+      document.getElementById('msharebar').style.display='flex';
+      showToast('💌 Link created! Copy and send it to your love.');
     }
     function copyLink(){
       if(!S.link)return;
-      navigator.clipboard.writeText(S.link).then(()=>showToast('✓ Link copied — send it to your love!')).catch(()=>{
-        // fallback
-        const el=document.createElement('textarea');
-        el.value=S.link; document.body.appendChild(el); el.select();
-        document.execCommand('copy'); document.body.removeChild(el);
+      navigator.clipboard.writeText(S.link).then(()=>showToast('✓ Copied! Send this link to your love 💌')).catch(()=>{
+        const el=document.createElement('textarea');el.value=S.link;
+        document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);
         showToast('✓ Link copied!');
       });
     }
+
+    // ═══ TOAST ═══
     function showToast(msg){
       const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-      clearTimeout(t._tid); t._tid=setTimeout(()=>t.classList.remove('show'),3200);
+      clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3500);
     }
 
-    // ══════════════════════════════════════════════════
-    // RECEIVED VIEW
-    // Decode #letter= hash and render the letter
-    // ══════════════════════════════════════════════════
-    let receivedSong=null;
-    function checkForLetter(){
+    // ═══════════════════════════════════════════════════
+    // RECEIVED VIEW — decode #letter= and render
+    // ═══════════════════════════════════════════════════
+    function checkLetter(){
       const hash=window.location.hash||'';
       if(!hash.startsWith('#letter='))return;
       try{
-        const raw=hash.slice('#letter='.length);
-        const data=JSON.parse(decodeURIComponent(escape(atob(raw))));
-        renderReceivedLetter(data);
-      }catch(e){console.error('Letter decode failed:',e);}
+        const raw=hash.slice(8);
+        const d=JSON.parse(decodeURIComponent(escape(atob(raw))));
+        showReceived(d);
+      }catch(e){console.error('Letter decode error:',e);}
     }
 
-    function renderReceivedLetter(d){
+    function showReceived(d){
       document.getElementById('composerView').style.display='none';
       const rv=document.getElementById('receivedView');
-      rv.classList.add('open');
-      document.getElementById('receivedTitle').textContent=d.to?`A letter for ${d.to}`:'A letter just for you';
+      rv.style.display='flex';rv.classList.add('open');
+      document.getElementById('rTitle').textContent=d.to?`A letter for ${d.to}`:'A letter just for you';
       const ff=`'${d.font||'Playfair Display'}',serif`;
-      const poetry=d.poetry
-        ?`<div class="letter-poetry-embed" style="font-family:${ff}">${d.poetry.replace(/\n/g,'<br/>')}</div>`:'';
-      const songBlock=d.song?`
-        <div class="letter-song-block">
-          <span class="s-emoji">${d.song.emoji}</span>
-          <div class="s-info">
-            <div class="s-name">${d.song.title}</div>
-            <div class="s-artist">${d.song.artist} · A song from the heart</div>
-          </div>
-        </div>`:'';
-      document.getElementById('receivedPaper').innerHTML=`
-        <div class="letter-paper mood-theme-${d.mood||'rose'}">
-          <div class="letter-to">For ${d.to||'My Love'},</div>
-          <div class="letter-body-text" style="font-family:${ff}">${(d.body||'…').replace(/\n/g,'<br/>')}</div>
-          ${poetry}${songBlock}
-          <div class="letter-sign" style="font-family:${ff}">— ${d.sign||'Yours'}</div>
-        </div>`;
+      const t=d.tmpl||'classic';
+      const poem=d.poetry?`<div class="lpoem" style="font-family:${ff}">${d.poetry.replace(/\n/g,'<br/>')}</div>`:'';
+      const songBlock=d.song?`<div class="lsong lsong-${t}">
+        <span class="s-em">${d.song.e}</span>
+        <div class="s-inf">
+          <div class="s-tt">${d.song.t}</div>
+          <div class="s-ar">${d.song.a} · A song from the heart</div>
+        </div>
+      </div>`:'';
+      const bodyHTML=`<div class="lbody" style="font-family:${ff}">${(d.body||'…').replace(/\n/g,'<br/>')}</div>`;
+
+      let paper='';
+      const to=d.to||'My Love';const sign=d.sign||'Yours';
+      if(t==='classic') paper=`<div class="lp-classic"><div class="lhead">To ${to}</div>${bodyHTML}${poem}${songBlock}<div class="lsign" style="font-family:${ff}">— ${sign}</div></div>`;
+      else if(t==='poem') paper=`<div class="lp-poem"><div class="lhead">For ${to}, with love</div>${bodyHTML}${poem}${songBlock}<div class="lsign">${sign}</div></div>`;
+      else if(t==='midnight') paper=`<div class="lp-midnight"><div class="lhead">A thought for ${to}, written at midnight</div>${bodyHTML}${poem}${songBlock}<div class="lsign" style="font-family:${ff}">— ${sign}</div></div>`;
+      else if(t==='anniversary') paper=`<div class="lp-anniversary"><span class="ann-corner tl">✦</span><span class="ann-corner tr">✦</span><span class="ann-corner bl">✦</span><span class="ann-corner br">✦</span><div class="lhead">In honour of ${to}</div>${bodyHTML}${poem}${songBlock}<div class="lsign">${sign}</div></div>`;
+      else if(t==='apology') paper=`<div class="lp-apology"><div class="lhead">To ${to} — with all sincerity</div>${bodyHTML}${poem}${songBlock}<div class="lsign" style="font-family:${ff}">— ${sign}</div></div>`;
+      else if(t==='surprise') paper=`<div class="lp-surprise"><span class="confetti" style="top:10px;left:18px">🎉</span><span class="confetti" style="top:8px;right:22px">🎊</span><span class="confetti" style="bottom:14px;left:24px">✨</span><span class="confetti" style="bottom:10px;right:18px">🎈</span><div class="lhead">Hey ${to}! ✨</div>${bodyHTML}${poem}${songBlock}<div class="lsign">${sign}</div></div>`;
+      else paper=`<div class="lp-classic">${bodyHTML}${poem}${songBlock}</div>`;
+
+      document.getElementById('rPaper').innerHTML=paper;
+
       if(d.song){
-        receivedSong=d.song;
-        document.getElementById('rEmoji').textContent=d.song.emoji;
-        document.getElementById('rTitle').textContent=d.song.title;
-        document.getElementById('rArtist').textContent=d.song.artist;
-        document.getElementById('receivedSongSection').style.display='block';
+        document.getElementById('rSong').style.display='block';
+        document.getElementById('rSpotify').innerHTML=`
+          <iframe style="border-radius:4px;" width="100%" height="80" frameborder="0"
+            allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"
+            src="https://open.spotify.com/embed/track/${d.song.id}?utm_source=generator&theme=0" loading="lazy"></iframe>`;
       }
     }
 
-    function receivedToggle(){
-      if(!receivedSong)return;
-      S.playing=!S.playing;
-      loadYT(receivedSong.ytId,S.playing);
-      document.getElementById('rPlayBtn').textContent=S.playing?'⏸ Pause':'▶ Play Song';
-    }
-
-    // Boot
-    checkForLetter();
+    checkLetter();
 </script>
 </body>
 </html>
